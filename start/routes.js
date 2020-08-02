@@ -23,4 +23,13 @@ Route.get('/', () => {
 // Route.post('/register', 'AuthController.register').validator('Register')
 Route.post('/authenticate', 'AuthController.authenticate').validator('AuthenticateRequest')
 
-Route.post('/user/store', 'UserController.store').validator('UserRequest')
+
+Route.group(() => {
+
+  Route.get('/users', 'UserController.index')
+  Route.get('/users/:id', 'UserController.show')
+  Route.post('/users/store', 'UserController.store').validator('UserRequest')
+  Route.put('/users/:id', 'UserController.update').validator('UserRequest')
+  Route.delete('/users/:id', 'UserController.destroy')
+
+}).middleware('auth')
