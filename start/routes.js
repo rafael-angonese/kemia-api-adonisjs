@@ -54,5 +54,12 @@ Route.group(() => {
   Route.put('/equipamentos/:id', 'EquipamentoController.update').validator('EquipamentoValidator')
   Route.delete('/equipamentos/:id', 'EquipamentoController.destroy')
 
+  //Tanque
+  Route.get('/tanques', 'TanqueController.index')
+  Route.get('/tanques/:id', 'TanqueController.show')
+  Route.post('/tanques/store', 'TanqueController.store').validator('TanqueValidator')
+  Route.put('/tanques/:id', 'TanqueController.update').validator('TanqueValidator')
+  Route.delete('/tanques/:id', 'TanqueController.destroy')
+
 })
 //.middleware('auth')

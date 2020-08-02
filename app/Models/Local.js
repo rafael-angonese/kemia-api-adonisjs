@@ -20,6 +20,10 @@ class Local extends Model {
     equipamentos() {
         return this.hasMany('App/Models/Equipamento')
     }
+
+    tanques() {
+        return this.hasMany('App/Models/Tanque')
+    }
 }
 
 module.exports = Local
