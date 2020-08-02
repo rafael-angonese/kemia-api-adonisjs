@@ -3,13 +3,18 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class CreateControleColetaSchema extends Schema {
-  up () {
-    this.create('controle_coletas', (table) => {
+class CreateControleOdSchema extends Schema {
+  up() {
+    this.create('controle_ods', (table) => {
       table.increments()
       table.date('data').notNullable()
-      table.integer('status_coleta').notNullable()
-      table.integer('condicao_coleta').notNullable()
+      table.time('hora').notNullable()
+      table.float('bruto').notNullable()
+      table.float('reator_1').notNullable()
+      table.float('reator_2').notNullable()
+      table.float('reator_3').notNullable()
+      table.float('tratado').notNullable()
+      table.string('acao_corretiva').notNullable()
 
       table
         .integer('local_id')
@@ -30,9 +35,9 @@ class CreateControleColetaSchema extends Schema {
     })
   }
 
-  down () {
-    this.drop('controle_coletas')
+  down() {
+    this.drop('controle_ods')
   }
 }
 
-module.exports = CreateControleColetaSchema
+module.exports = CreateControleOdSchema

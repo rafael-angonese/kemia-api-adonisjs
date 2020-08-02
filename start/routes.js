@@ -68,5 +68,12 @@ Route.group(() => {
   Route.put('/controle-coletas/:id', 'ControleColetaController.update').validator('ControleColetaValidator')
   Route.delete('/controle-coletas/:id', 'ControleColetaController.destroy')
 
+  //Controle Od
+  Route.get('/controle-ods', 'ControleOdController.index')
+  Route.get('/controle-ods/:id', 'ControleOdController.show')
+  Route.post('/controle-ods/store', 'ControleOdController.store').validator('ControleOdValidator')
+  Route.put('/controle-ods/:id', 'ControleOdController.update').validator('ControleOdValidator')
+  Route.delete('/controle-ods/:id', 'ControleOdController.destroy')
+
 })
 //.middleware('auth')

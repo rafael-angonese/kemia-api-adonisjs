@@ -24,6 +24,10 @@ class Empresa extends Model {
     controleColetas() {
         return this.hasMany('App/Models/ControleColeta')
     }
+
+    controleOds() {
+        return this.hasMany('App/Models/ControleOd')
+    }
 }
 
 module.exports = Empresa
