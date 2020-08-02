@@ -61,5 +61,12 @@ Route.group(() => {
   Route.put('/tanques/:id', 'TanqueController.update').validator('TanqueValidator')
   Route.delete('/tanques/:id', 'TanqueController.destroy')
 
+  //Controle Coleta
+  Route.get('/controle-coletas', 'ControleColetaController.index')
+  Route.get('/controle-coletas/:id', 'ControleColetaController.show')
+  Route.post('/controle-coletas/store', 'ControleColetaController.store').validator('ControleColetaValidator')
+  Route.put('/controle-coletas/:id', 'ControleColetaController.update').validator('ControleColetaValidator')
+  Route.delete('/controle-coletas/:id', 'ControleColetaController.destroy')
+
 })
 //.middleware('auth')
