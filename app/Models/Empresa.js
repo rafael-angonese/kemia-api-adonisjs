@@ -8,6 +8,10 @@ class Empresa extends Model {
     users() {
         return this.hasMany('App/Models/User')
     }
+
+    locais() {
+        return this.hasMany('App/Models/Local')
+    }
 }
 
 module.exports = Empresa

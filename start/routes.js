@@ -38,4 +38,10 @@ Route.group(() => {
   Route.put('/empresas/:id', 'EmpresaController.update').validator('EmpresaValidator')
   Route.delete('/empresas/:id', 'EmpresaController.destroy')
 
+  Route.get('/locais', 'LocalController.index')
+  Route.get('/locais/:id', 'LocalController.show')
+  Route.post('/locais/store', 'LocalController.store').validator('LocalValidator')
+  Route.put('/locais/:id', 'LocalController.update').validator('LocalValidator')
+  Route.delete('/locais/:id', 'LocalController.destroy')
+
 }).middleware('auth')

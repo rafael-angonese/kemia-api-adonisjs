@@ -3,9 +3,13 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class AddEmpresaToUsersSchema extends Schema {
+class LocalSchema extends Schema {
   up() {
-    this.table('users', (table) => {
+    this.create('locais', (table) => {
+      table.increments()
+      table.string('nome').notNullable()
+      table.string('descricao').notNullable()
+      table.string('endereco').notNullable()
       table
         .integer('empresa_id')
         .unsigned()
@@ -13,15 +17,13 @@ class AddEmpresaToUsersSchema extends Schema {
         .inTable('empresas')
         .onDelete('SET NULL')
         .onUpdate('CASCADE')
+      table.timestamps()
     })
   }
 
   down() {
-    this.table('users', (table) => {
-      table.dropForeign('empresa_id')
-      table.dropColumn('empresa_id')
-    })
+    this.drop('locais')
   }
 }
 
-module.exports = AddEmpresaToUsersSchema
+module.exports = LocalSchema
