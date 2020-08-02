@@ -32,6 +32,10 @@ class Local extends Model {
     controleOds() {
         return this.hasMany('App/Models/ControleOd')
     }
+
+    controlePhs() {
+        return this.hasMany('App/Models/ControlePh')
+    }
 }
 
 module.exports = Local
