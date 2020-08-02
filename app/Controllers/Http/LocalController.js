@@ -12,6 +12,7 @@ class LocalController {
     const locais = await Local.query()
       .where('empresa_id', auth_user.empresa_id)
       .with('empresa')
+      .with('users')
       .fetch()
 
     return locais
@@ -20,6 +21,8 @@ class LocalController {
   async show({ params }) {
 
     const local = await Local.find(params.id)
+
+    await local.load('users')
 
     return local
   }
@@ -33,6 +36,13 @@ class LocalController {
     ])
 
     const local = await Local.create(data)
+
+
+    const { users } = request.post()
+
+    if (users && users.length > 0) {
+      await local.users().attach(users)
+    }
 
     return response.status(201).json(local)
   }
@@ -51,6 +61,13 @@ class LocalController {
     local.merge(data)
 
     await local.save()
+
+    const { users } = request.post()
+    
+    if (users && users.length > 0) {
+      await local.users().detach()
+      await local.users().attach(users)
+    }
 
     return local
   }

@@ -10,8 +10,9 @@ class UserController {
 
         const users = await User.query()
             .where('empresa_id', auth_user.empresa_id)
-            .select('username', 'nome', 'tipo', 'empresa_id')
+            .select('id', 'username', 'nome', 'tipo', 'empresa_id')
             .with('empresa')
+            .with('locais')
             .fetch()
 
         return users
@@ -21,8 +22,9 @@ class UserController {
 
         const user = await User.query()
             .where('id', params.id)
-            .select('username', 'nome', 'tipo', 'empresa_id')
+            .select('id', 'username', 'nome', 'tipo', 'empresa_id')
             .with('empresa')
+            .with('locais')
             .first()
 
         //await user.load('empresa')
@@ -40,6 +42,12 @@ class UserController {
         ])
 
         const user = await User.create(data)
+
+        const { locais } = request.post()
+    
+        if (locais && locais.length > 0) {
+          await user.locais().attach(locais)
+        }
 
         return response.status(201).json({
             id: user.id,
@@ -64,6 +72,13 @@ class UserController {
         user.merge(data)
 
         await user.save()
+
+        const { locais } = request.post()
+    
+        if (locais && locais.length > 0) {
+          await user.locais().detach()
+          await user.locais().attach(locais)
+        }
 
         return response.status(201).json({
             id: user.id,
