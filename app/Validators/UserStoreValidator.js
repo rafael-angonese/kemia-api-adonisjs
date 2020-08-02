@@ -2,18 +2,19 @@
 
 const Antl = use('Antl')
 
-class UserRequest {
+class UserStoreValidator {
 
   get validateAll() {
     return true
   }
 
-  get rules () {
+  get rules() {
     return {
       username: 'required|unique:users,username',
       senha: 'required',
       nome: 'required',
       tipo: 'required|integer',
+      empresa_id: 'required|exists:empresas,id',
     }
   }
 
@@ -23,4 +24,4 @@ class UserRequest {
 
 }
 
-module.exports = UserRequest
+module.exports = UserStoreValidator

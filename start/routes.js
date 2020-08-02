@@ -28,8 +28,14 @@ Route.group(() => {
 
   Route.get('/users', 'UserController.index')
   Route.get('/users/:id', 'UserController.show')
-  Route.post('/users/store', 'UserController.store').validator('UserRequest')
-  Route.put('/users/:id', 'UserController.update').validator('UserRequest')
+  Route.post('/users/store', 'UserController.store').validator('UserStoreValidator')
+  Route.put('/users/:id', 'UserController.update').validator('UserUpdateValidator')
   Route.delete('/users/:id', 'UserController.destroy')
+
+  Route.get('/empresas', 'EmpresaController.index')
+  Route.get('/empresas/:id', 'EmpresaController.show')
+  Route.post('/empresas/store', 'EmpresaController.store').validator('EmpresaValidator')
+  Route.put('/empresas/:id', 'EmpresaController.update').validator('EmpresaValidator')
+  Route.delete('/empresas/:id', 'EmpresaController.destroy')
 
 }).middleware('auth')

@@ -6,23 +6,26 @@ class UserController {
 
     async index({ request, auth, response }) {
 
+        let auth_user = await auth.getUser()
 
-        // try {
-        //     let empresa_id = await auth.getUser().empresa_logada_id
-        // } catch (error) {
-        //     response.send('Missing or invalid api token')
-        // }
-
-        const users = await User.query().select('nome', 'tipo').fetch()
+        const users = await User.query()
+            .where('empresa_id', auth_user.empresa_id)
+            .select('username', 'nome', 'tipo', 'empresa_id')
+            .with('empresa')
+            .fetch()
 
         return users
     }
 
     async show({ params }) {
 
-        const user = await User.find(params.id)
+        const user = await User.query()
+            .where('id', params.id)
+            .select('username', 'nome', 'tipo', 'empresa_id')
+            .with('empresa')
+            .first()
 
-        // await user.load('empresa')
+        //await user.load('empresa')
 
         return user
     }
@@ -33,19 +36,27 @@ class UserController {
             'nome',
             'senha',
             'tipo',
+            'empresa_id',
         ])
 
         const user = await User.create(data)
 
-        return response.status(201).json(user)
+        return response.status(201).json({
+            id: user.id,
+            username: user.username,
+            nome: user.nome,
+            tipo: user.tipo,
+            empresa_id: user.empresa_id,
+        })
     }
 
     async update({ request, params, response }) {
-        
+
         const data = request.only([
             'username',
             'nome',
             'tipo',
+            'empresa_id',
         ])
 
         const user = await User.find(params.id)
@@ -54,11 +65,17 @@ class UserController {
 
         await user.save()
 
-        return user
+        return response.status(201).json({
+            id: user.id,
+            username: user.username,
+            nome: user.nome,
+            tipo: user.tipo,
+            empresa_id: user.empresa_id,
+        })
     }
 
     async destroy({ params }) {
-        
+
         const user = await User.find(params.id)
 
         await user.delete()
