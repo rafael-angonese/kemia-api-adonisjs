@@ -19,3 +19,8 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+// Route.post('/register', 'AuthController.register').validator('Register')
+Route.post('/authenticate', 'AuthController.authenticate').validator('AuthenticateRequest')
+
+Route.post('/user/store', 'UserController.store').validator('UserRequest')
