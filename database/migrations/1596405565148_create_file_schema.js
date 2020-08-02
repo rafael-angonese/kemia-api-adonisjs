@@ -5,7 +5,7 @@ const Schema = use('Schema')
 
 class CreateFileSchema extends Schema {
   up () {
-    this.create('create_files', (table) => {
+    this.create('files', (table) => {
       table.increments()
       table.string('nome').notNullable()
       table.string('path').notNullable()
@@ -14,7 +14,7 @@ class CreateFileSchema extends Schema {
   }
 
   down () {
-    this.drop('create_files')
+    this.drop('files')
   }
 }
 

@@ -47,5 +47,12 @@ Route.group(() => {
   Route.put('/locais/:id', 'LocalController.update').validator('LocalValidator')
   Route.delete('/locais/:id', 'LocalController.destroy')
 
+  //Equipamento
+  Route.get('/equipamentos', 'EquipamentoController.index')
+  Route.get('/equipamentos/:id', 'EquipamentoController.show')
+  Route.post('/equipamentos/store', 'EquipamentoController.store').validator('EquipamentoValidator')
+  Route.put('/equipamentos/:id', 'EquipamentoController.update').validator('EquipamentoValidator')
+  Route.delete('/equipamentos/:id', 'EquipamentoController.destroy')
+
 })
 //.middleware('auth')

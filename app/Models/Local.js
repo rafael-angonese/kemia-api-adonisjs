@@ -16,6 +16,10 @@ class Local extends Model {
     users() {
         return this.belongsToMany('App/Models/User').pivotTable('local_usuario').withTimestamps()
     }
+
+    equipamentos() {
+        return this.hasMany('App/Models/Equipamento')
+    }
 }
 
 module.exports = Local
