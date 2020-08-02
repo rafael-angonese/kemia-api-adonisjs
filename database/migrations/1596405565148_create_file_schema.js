@@ -1,0 +1,21 @@
+'use strict'
+
+/** @type {import('@adonisjs/lucid/src/Schema')} */
+const Schema = use('Schema')
+
+class CreateFileSchema extends Schema {
+  up () {
+    this.create('create_files', (table) => {
+      table.increments()
+      table.string('nome').notNullable()
+      table.string('path').notNullable()
+      table.timestamps()
+    })
+  }
+
+  down () {
+    this.drop('create_files')
+  }
+}
+
+module.exports = CreateFileSchema

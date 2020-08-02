@@ -26,22 +26,26 @@ Route.post('/authenticate', 'AuthController.authenticate').validator('Authentica
 
 Route.group(() => {
 
+  //User
   Route.get('/users', 'UserController.index')
   Route.get('/users/:id', 'UserController.show')
   Route.post('/users/store', 'UserController.store').validator('UserStoreValidator')
   Route.put('/users/:id', 'UserController.update').validator('UserUpdateValidator')
   Route.delete('/users/:id', 'UserController.destroy')
 
+  //Empresa
   Route.get('/empresas', 'EmpresaController.index')
   Route.get('/empresas/:id', 'EmpresaController.show')
   Route.post('/empresas/store', 'EmpresaController.store').validator('EmpresaValidator')
   Route.put('/empresas/:id', 'EmpresaController.update').validator('EmpresaValidator')
   Route.delete('/empresas/:id', 'EmpresaController.destroy')
 
+  //Local
   Route.get('/locais', 'LocalController.index')
   Route.get('/locais/:id', 'LocalController.show')
   Route.post('/locais/store', 'LocalController.store').validator('LocalValidator')
   Route.put('/locais/:id', 'LocalController.update').validator('LocalValidator')
   Route.delete('/locais/:id', 'LocalController.destroy')
 
-}).middleware('auth')
+})
+//.middleware('auth')
