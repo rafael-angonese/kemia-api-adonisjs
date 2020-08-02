@@ -2,9 +2,10 @@
 
 const { rule } = use('Validator')
 
+
 const Antl = use('Antl')
 
-class ControleOdValidator {
+class ControleSsValidator {
 
     get validateAll() {
         return true
@@ -31,4 +32,4 @@ class ControleOdValidator {
 
 }
 
-module.exports = ControleOdValidator
+module.exports = ControleSsValidator

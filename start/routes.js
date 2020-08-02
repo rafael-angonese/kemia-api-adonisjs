@@ -82,5 +82,12 @@ Route.group(() => {
   Route.put('/controle-phs/:id', 'ControlePhController.update').validator('ControlePhValidator')
   Route.delete('/controle-phs/:id', 'ControlePhController.destroy')
 
+  //Controle Ss
+  Route.get('/controle-sses', 'ControleSsController.index')
+  Route.get('/controle-sses/:id', 'ControleSsController.show')
+  Route.post('/controle-sses/store', 'ControleSsController.store').validator('ControleSsValidator')
+  Route.put('/controle-sses/:id', 'ControleSsController.update').validator('ControleSsValidator')
+  Route.delete('/controle-sses/:id', 'ControleSsController.destroy')
+
 })
 //.middleware('auth')
