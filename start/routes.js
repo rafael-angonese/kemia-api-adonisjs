@@ -89,5 +89,12 @@ Route.group(() => {
   Route.put('/controle-sses/:id', 'ControleSsController.update').validator('ControleSsValidator')
   Route.delete('/controle-sses/:id', 'ControleSsController.destroy')
 
+  //Controle Vazao
+  Route.get('/controle-vazaos', 'ControleVazaoController.index')
+  Route.get('/controle-vazaos/:id', 'ControleVazaoController.show')
+  Route.post('/controle-vazaos/store', 'ControleVazaoController.store').validator('ControleVazaoValidator')
+  Route.put('/controle-vazaos/:id', 'ControleVazaoController.update').validator('ControleVazaoValidator')
+  Route.delete('/controle-vazaos/:id', 'ControleVazaoController.destroy')
+
 })
 //.middleware('auth')

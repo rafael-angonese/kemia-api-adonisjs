@@ -1,9 +1,8 @@
 'use strict'
 
-
 const Antl = use('Antl')
 
-class ControlePhValidator {
+class ControleVazaoValidator {
 
     get validateAll() {
         return true
@@ -13,12 +12,7 @@ class ControlePhValidator {
         return {
             data: 'required|date',
             hora: 'required|date',
-            bruto: 'required|number',
-            reator_1: 'required|number',
-            reator_2: 'required|number',
-            reator_3: 'required|number',
-            tratado: 'required|number',
-            acao_corretiva: 'required',
+            vazao_dia: 'required|number',
             empresa_id: 'required|exists:empresas,id',
             local_id: 'required|exists:locais,id',
         }
@@ -30,4 +24,4 @@ class ControlePhValidator {
 
 }
 
-module.exports = ControlePhValidator
+module.exports = ControleVazaoValidator
