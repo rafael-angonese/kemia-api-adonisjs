@@ -12,6 +12,10 @@ class Tanque extends Model {
     local() {
         return this.belongsTo('App/Models/Local')
     }
+
+    controleTanques() {
+        return this.hasMany('App/Models/ControleTanque')
+    }
     
 }
 

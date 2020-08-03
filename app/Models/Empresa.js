@@ -36,6 +36,10 @@ class Empresa extends Model {
     controleSses() {
         return this.hasMany('App/Models/ControleSs')
     }
+
+    controleTanques() {
+        return this.hasMany('App/Models/ControleTanque')
+    }
 }
 
 module.exports = Empresa
