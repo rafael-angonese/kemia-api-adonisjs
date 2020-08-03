@@ -124,6 +124,13 @@ Route.group(() => {
   Route.put('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.update').validator('ControleConcentracaoCloroValidator')
   Route.delete('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.destroy')
 
+  //Controle Pastilha Cloro
+  Route.get('/controle-pastilha-cloros', 'ControlePastilhaCloroController.index')
+  Route.get('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.show')
+  Route.post('/controle-pastilha-cloros/store', 'ControlePastilhaCloroController.store').validator('ControlePastilhaCloroValidator')
+  Route.put('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.update').validator('ControlePastilhaCloroValidator')
+  Route.delete('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.destroy')
+
 
 })
 //.middleware('auth')

@@ -52,6 +52,10 @@ class Empresa extends Model {
     controleConcentracaoCloros() {
         return this.hasMany('App/Models/ControleConcentracaoCloro')
     }
+
+    controlePastilhaCloros() {
+        return this.hasMany('App/Models/ControlePastilhaCloro')
+    }
 }
 
 module.exports = Empresa
