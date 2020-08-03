@@ -32,8 +32,8 @@ class ControleBombaController {
       'leitura',
       'corrente',
       'acao_corretiva',
-      'equipamento_id',
       'empresa_id',
+      'equipamento_id',
     ])
 
     const controle_bomba = await ControleBomba.create(data)
@@ -48,8 +48,8 @@ class ControleBombaController {
       'hora',
       'leitura',
       'corrente',
-      'equipamento_id',
       'empresa_id',
+      'equipamento_id',
     ])
 
 

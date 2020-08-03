@@ -16,6 +16,10 @@ class Equipamento extends Model {
     controleBombas() {
         return this.hasMany('App/Models/ControleBomba')
     }
+
+    equipamentoManutencaos() {
+        return this.hasMany('App/Models/ControleBomba')
+    }
 }
 
 module.exports = Equipamento

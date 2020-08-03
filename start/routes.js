@@ -110,5 +110,12 @@ Route.group(() => {
   Route.put('/controle-bombas/:id', 'ControleBombaController.update').validator('ControleBombaValidator')
   Route.delete('/controle-bombas/:id', 'ControleBombaController.destroy')
 
+  //Equipamento Manutencao
+  Route.get('/equipamento-manutencaos', 'EquipamentoManutencaoController.index')
+  Route.get('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.show')
+  Route.post('/equipamento-manutencaos/store', 'EquipamentoManutencaoController.store').validator('EquipamentoManutencaoValidator')
+  Route.put('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.update').validator('EquipamentoManutencaoValidator')
+  Route.delete('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.destroy')
+
 })
 //.middleware('auth')
