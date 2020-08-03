@@ -103,5 +103,12 @@ Route.group(() => {
   Route.put('/controle-tanques/:id', 'ControleTanqueController.update').validator('ControleTanqueValidator')
   Route.delete('/controle-tanques/:id', 'ControleTanqueController.destroy')
 
+  //Controle Bomba
+  Route.get('/controle-bombas', 'ControleBombaController.index')
+  Route.get('/controle-bombas/:id', 'ControleBombaController.show')
+  Route.post('/controle-bombas/store', 'ControleBombaController.store').validator('ControleBombaValidator')
+  Route.put('/controle-bombas/:id', 'ControleBombaController.update').validator('ControleBombaValidator')
+  Route.delete('/controle-bombas/:id', 'ControleBombaController.destroy')
+
 })
 //.middleware('auth')

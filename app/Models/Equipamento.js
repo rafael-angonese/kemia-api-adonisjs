@@ -12,6 +12,10 @@ class Equipamento extends Model {
     local() {
         return this.belongsTo('App/Models/Local')
     }
+
+    controleBombas() {
+        return this.hasMany('App/Models/ControleBomba')
+    }
 }
 
 module.exports = Equipamento
