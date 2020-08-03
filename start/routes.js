@@ -117,5 +117,13 @@ Route.group(() => {
   Route.put('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.update').validator('EquipamentoManutencaoValidator')
   Route.delete('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.destroy')
 
+  //Controle Concentracao Cloro
+  Route.get('/controle-concentracao-cloros', 'ControleConcentracaoCloroController.index')
+  Route.get('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.show')
+  Route.post('/controle-concentracao-cloros/store', 'ControleConcentracaoCloroController.store').validator('ControleConcentracaoCloroValidator')
+  Route.put('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.update').validator('ControleConcentracaoCloroValidator')
+  Route.delete('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.destroy')
+
+
 })
 //.middleware('auth')
