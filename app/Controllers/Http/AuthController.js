@@ -10,7 +10,7 @@ class AuthController {
 
         let token = await auth.attempt(username, senha)
 
-        token.user = await User.query().select('nome', 'tipo').where('username', username).fetch()
+        token.user = await User.query().select('nome', 'tipo').where('username', username).first()
 
         return token
 
