@@ -10,7 +10,7 @@ class UserSchema extends Schema {
       table.string('username').notNullable().unique()
       table.string('senha').notNullable()
       table.string('nome').notNullable()
-      table.integer('tipo').notNullable()
+      table.string('tipo').notNullable()
       table.timestamps()
     })
   }

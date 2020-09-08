@@ -4,16 +4,26 @@ const User = use('App/Models/User')
 
 class AuthController {
 
-    async authenticate({ request, auth }) {
+    async authenticate({ request, auth, response }) {
 
         const { username, senha } = request.all()
 
-        let token = await auth.attempt(username, senha)
+        try {
 
-        token.user = await User.query().select('nome', 'tipo').where('username', username).first()
+            let token = await auth.attempt(username, senha)
 
-        return token
+            token.user = await User.query().select('nome', 'tipo', 'empresa_id').where('username', username).first()
 
+            return token
+
+        } catch (e) {
+            response.unauthorized(
+                [{
+                    field: "senha",
+                    message: "Senha inválida"
+                }]
+            )
+        }
     }
 
 }

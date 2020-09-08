@@ -11,8 +11,8 @@ class UserController {
         const users = await User.query()
             .where('empresa_id', auth_user.empresa_id)
             .select('id', 'username', 'nome', 'tipo', 'empresa_id')
-            .with('empresa')
-            .with('locais')
+            // .with('empresa')
+            // .with('locais')
             .fetch()
 
         return users
@@ -44,7 +44,7 @@ class UserController {
         const user = await User.create(data)
 
         const { locais } = request.post()
-    
+
         if (locais && locais.length > 0) {
           await user.locais().attach(locais)
         }
@@ -74,7 +74,7 @@ class UserController {
         await user.save()
 
         const { locais } = request.post()
-    
+
         if (locais && locais.length > 0) {
           await user.locais().detach()
           await user.locais().attach(locais)

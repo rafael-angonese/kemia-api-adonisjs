@@ -17,6 +17,8 @@ class User extends Model {
     })
   }
 
+  //tipo - 'master' | 'admin' | 'operator'
+
   tokens() {
     return this.hasMany('App/Models/Token')
   }

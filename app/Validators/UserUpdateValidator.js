@@ -12,7 +12,7 @@ class UserUpdateValidator {
     return {
       username: 'unique:users,username',
       nome: 'required',
-      tipo: 'required|integer',
+      tipo: 'required',
       empresa_id: 'required|exists:empresas,id',
     }
   }

@@ -13,7 +13,7 @@ class UserStoreValidator {
       username: 'required|unique:users,username',
       senha: 'required',
       nome: 'required',
-      tipo: 'required|integer',
+      tipo: 'required',
       empresa_id: 'required|exists:empresas,id',
     }
   }
