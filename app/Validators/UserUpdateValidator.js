@@ -9,8 +9,9 @@ class UserUpdateValidator {
   }
 
   get rules () {
+    const userId = this.ctx.params.id
     return {
-      username: 'unique:users,username',
+      username: `unique:users,username,id,${userId}`,
       nome: 'required',
       tipo: 'required',
       empresa_id: 'required|exists:empresas,id',

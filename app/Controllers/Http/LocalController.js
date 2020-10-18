@@ -16,8 +16,8 @@ class LocalController {
 
     const locais = await Local.query()
       .where('empresa_id', empresaId)
-      .with('empresa')
-      .with('users')
+      // .with('empresa')
+      .with('users', qr => qr.select('id', 'nome') )
       .fetch()
 
     return locais
@@ -77,12 +77,13 @@ class LocalController {
     return local
   }
 
-  async destroy({ params }) {
+  async destroy({ params, response }) {
 
     const local = await Local.find(params.id)
 
     await local.delete()
 
+    response.status(204).send('')
   }
 
 }

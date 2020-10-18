@@ -29,7 +29,7 @@ Route.group(() => {
   //User
   Route.get('/users', 'UserController.index')
   Route.get('/users/:id', 'UserController.show')
-  Route.post('/users/store', 'UserController.store').validator('UserStoreValidator')
+  Route.post('/users', 'UserController.store').validator('UserStoreValidator')
   Route.put('/users/:id', 'UserController.update').validator('UserUpdateValidator')
   Route.delete('/users/:id', 'UserController.destroy')
 
@@ -42,8 +42,8 @@ Route.group(() => {
 
   //Local
   Route.get('/locais', 'LocalController.index')
+  Route.post('/locais', 'LocalController.store').validator('LocalValidator')
   Route.get('/locais/:id', 'LocalController.show')
-  Route.post('/locais/store', 'LocalController.store').validator('LocalValidator')
   Route.put('/locais/:id', 'LocalController.update').validator('LocalValidator')
   Route.delete('/locais/:id', 'LocalController.destroy')
 
@@ -57,7 +57,7 @@ Route.group(() => {
   //Tanque
   Route.get('/tanques', 'TanqueController.index')
   Route.get('/tanques/:id', 'TanqueController.show')
-  Route.post('/tanques/store', 'TanqueController.store').validator('TanqueValidator')
+  Route.post('/tanques', 'TanqueController.store').validator('TanqueValidator')
   Route.put('/tanques/:id', 'TanqueController.update').validator('TanqueValidator')
   Route.delete('/tanques/:id', 'TanqueController.destroy')
 

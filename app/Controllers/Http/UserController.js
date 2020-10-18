@@ -1,102 +1,109 @@
-'use strict'
+"use strict";
 
-const User = use('App/Models/User')
+const User = use("App/Models/User");
+const LocalUsuario = use("App/Models/LocalUsuario");
 
 class UserController {
+  async index({ request, auth, response }) {
+    const auth_user = await auth.getUser();
 
-    async index({ request, auth, response }) {
+    let { empresaId } = request.all();
 
-        let auth_user = await auth.getUser()
-
-        const users = await User.query()
-            .where('empresa_id', auth_user.empresa_id)
-            .select('id', 'username', 'nome', 'tipo', 'empresa_id')
-            // .with('empresa')
-            // .with('locais')
-            .fetch()
-
-        return users
+    if (!empresaId) {
+      empresaId = auth_user.empresa_id;
     }
 
-    async show({ params }) {
+    const users = await User.query()
+      .select("id", "username", "nome", "tipo", "empresa_id")
+      .where("empresa_id", empresaId)
+      // .with('empresa')
+      .with("locais", (qr) => qr.where("empresa_id", empresaId))
+      .fetch();
 
-        const user = await User.query()
-            .where('id', params.id)
-            .select('id', 'username', 'nome', 'tipo', 'empresa_id')
-            .with('empresa')
-            .with('locais')
-            .first()
+    return users;
+  }
 
-        //await user.load('empresa')
+  async show({ params }) {
+    const user = await User.query()
+      .where("id", params.id)
+      .select("id", "username", "nome", "tipo", "empresa_id")
+      .with("empresa")
+      .with("locais")
+      .first();
 
-        return user
+    //await user.load('empresa')
+
+    return user;
+  }
+
+  async store({ request, response }) {
+    const data = request.only([
+      "username",
+      "nome",
+      "senha",
+      "tipo",
+      "empresa_id",
+    ]);
+
+    const user = await User.create(data);
+
+    const { locais } = request.post();
+
+    if (locais && locais.length > 0) {
+      await user.locais().attach(locais);
     }
 
-    async store({ request, response }) {
-        const data = request.only([
-            'username',
-            'nome',
-            'senha',
-            'tipo',
-            'empresa_id',
-        ])
+    return response.status(201).json({
+      id: user.id,
+      username: user.username,
+      nome: user.nome,
+      tipo: user.tipo,
+      empresa_id: user.empresa_id,
+    });
+  }
 
-        const user = await User.create(data)
+  async update({ request, auth, params, response }) {
+    let auth_user = await auth.getUser();
 
-        const { locais } = request.post()
+    const data = request.only(["username", "nome", "tipo", "empresa_id"]);
 
-        if (locais && locais.length > 0) {
-          await user.locais().attach(locais)
-        }
+    let { empresaId } = request.all();
 
-        return response.status(201).json({
-            id: user.id,
-            username: user.username,
-            nome: user.nome,
-            tipo: user.tipo,
-            empresa_id: user.empresa_id,
-        })
+    if (!empresaId) {
+      empresaId = auth_user.empresa_id;
     }
 
-    async update({ request, params, response }) {
+    const user = await User.find(params.id);
 
-        const data = request.only([
-            'username',
-            'nome',
-            'tipo',
-            'empresa_id',
-        ])
+    user.merge(data);
 
-        const user = await User.find(params.id)
+    await user.save();
 
-        user.merge(data)
+    const { locais } = request.post();
 
-        await user.save()
+    await LocalUsuario.query()
+      // .where("empresa_id", empresaId)
+      .where("user_id", user.id)
+      .delete();
 
-        const { locais } = request.post()
-
-        if (locais && locais.length > 0) {
-          await user.locais().detach()
-          await user.locais().attach(locais)
-        }
-
-        return response.status(201).json({
-            id: user.id,
-            username: user.username,
-            nome: user.nome,
-            tipo: user.tipo,
-            empresa_id: user.empresa_id,
-        })
+    if (locais && locais.length > 0) {
+      await user.locais().attach(locais);
     }
 
-    async destroy({ params }) {
+    return response.status(201).json({
+      id: user.id,
+      username: user.username,
+      nome: user.nome,
+      tipo: user.tipo,
+      empresa_id: user.empresa_id,
+    });
+  }
 
-        const user = await User.find(params.id)
+  async destroy({ params }) {
+    const user = await User.find(params.id);
 
-        await user.delete()
-
-    }
-
+    await user.delete();
+  }
 }
 
-module.exports = UserController
+module.exports = UserController;
