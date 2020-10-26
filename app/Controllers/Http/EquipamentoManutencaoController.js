@@ -4,14 +4,13 @@ const EquipamentoManutencao = use('App/Models/EquipamentoManutencao')
 
 class EquipamentoManutencaoController {
 
-  async index({ auth }) {
+  async index({ auth, request }) {
 
-    let auth_user = await auth.getUser()
-
+    let { empresaId } = request.all();
 
     const equipamento_manutencaos = await EquipamentoManutencao.query()
-      .where('empresa_id', auth_user.empresa_id)
-      .with('empresa')
+      .where('empresa_id', empresaId)
+      // .with('empresa')
       .with('equipamento')
       .fetch()
 

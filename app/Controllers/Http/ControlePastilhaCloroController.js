@@ -4,16 +4,18 @@ const ControlePastilhaCloro = use('App/Models/ControlePastilhaCloro')
 
 class ControlePastilhaCloroController {
 
-  async index({ auth }) {
+  async index({ auth, request }) {
 
-    let auth_user = await auth.getUser()
+    // let auth_user = await auth.getUser()
 
+    let { localId } = request.all();
 
     const controle_pastilha_cloros = await ControlePastilhaCloro.query()
-      .where('empresa_id', auth_user.empresa_id)
+      // .where('empresa_id', auth_user.empresa_id)
       // .where('local_id', auth_user.local_id)
-      .with('empresa')
-      .with('local')
+      .where('local_id', localId)
+      // .with('empresa')
+      // .with('local')
       .fetch()
 
     return controle_pastilha_cloros

@@ -50,7 +50,7 @@ Route.group(() => {
   //Equipamento
   Route.get('/equipamentos', 'EquipamentoController.index')
   Route.get('/equipamentos/:id', 'EquipamentoController.show')
-  Route.post('/equipamentos/store', 'EquipamentoController.store').validator('EquipamentoValidator')
+  Route.post('/equipamentos', 'EquipamentoController.store').validator('EquipamentoValidator')
   Route.put('/equipamentos/:id', 'EquipamentoController.update').validator('EquipamentoValidator')
   Route.delete('/equipamentos/:id', 'EquipamentoController.destroy')
 
@@ -113,21 +113,21 @@ Route.group(() => {
   //Equipamento Manutencao
   Route.get('/equipamento-manutencaos', 'EquipamentoManutencaoController.index')
   Route.get('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.show')
-  Route.post('/equipamento-manutencaos/store', 'EquipamentoManutencaoController.store').validator('EquipamentoManutencaoValidator')
+  Route.post('/equipamento-manutencaos', 'EquipamentoManutencaoController.store').validator('EquipamentoManutencaoValidator')
   Route.put('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.update').validator('EquipamentoManutencaoValidator')
   Route.delete('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.destroy')
 
   //Controle Concentracao Cloro
   Route.get('/controle-concentracao-cloros', 'ControleConcentracaoCloroController.index')
   Route.get('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.show')
-  Route.post('/controle-concentracao-cloros/store', 'ControleConcentracaoCloroController.store').validator('ControleConcentracaoCloroValidator')
+  Route.post('/controle-concentracao-cloros', 'ControleConcentracaoCloroController.store').validator('ControleConcentracaoCloroValidator')
   Route.put('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.update').validator('ControleConcentracaoCloroValidator')
   Route.delete('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.destroy')
 
   //Controle Pastilha Cloro
   Route.get('/controle-pastilha-cloros', 'ControlePastilhaCloroController.index')
   Route.get('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.show')
-  Route.post('/controle-pastilha-cloros/store', 'ControlePastilhaCloroController.store').validator('ControlePastilhaCloroValidator')
+  Route.post('/controle-pastilha-cloros', 'ControlePastilhaCloroController.store').validator('ControlePastilhaCloroValidator')
   Route.put('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.update').validator('ControlePastilhaCloroValidator')
   Route.delete('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.destroy')
 
