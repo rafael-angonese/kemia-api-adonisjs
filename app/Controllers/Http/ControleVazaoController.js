@@ -4,16 +4,18 @@ const ControleVazao = use('App/Models/ControleVazao')
 
 class ControleVazaoController {
 
-  async index({ auth }) {
+  async index({ auth, request }) {
 
     let auth_user = await auth.getUser()
 
+    let { localId } = request.all();
 
     const controle_vazaos = await ControleVazao.query()
-      .where('empresa_id', auth_user.empresa_id)
+      // .where('empresa_id', auth_user.empresa_id)
       // .where('local_id', auth_user.local_id)
-      .with('empresa')
-      .with('local')
+      .where('local_id', localId)
+      // .with('empresa')
+      // .with('local')
       .fetch()
 
     return controle_vazaos

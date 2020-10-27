@@ -64,21 +64,21 @@ Route.group(() => {
   //Controle Coleta
   Route.get('/controle-coletas', 'ControleColetaController.index')
   Route.get('/controle-coletas/:id', 'ControleColetaController.show')
-  Route.post('/controle-coletas/store', 'ControleColetaController.store').validator('ControleColetaValidator')
+  Route.post('/controle-coletas', 'ControleColetaController.store').validator('ControleColetaValidator')
   Route.put('/controle-coletas/:id', 'ControleColetaController.update').validator('ControleColetaValidator')
   Route.delete('/controle-coletas/:id', 'ControleColetaController.destroy')
 
   //Controle Od
   Route.get('/controle-ods', 'ControleOdController.index')
   Route.get('/controle-ods/:id', 'ControleOdController.show')
-  Route.post('/controle-ods/store', 'ControleOdController.store').validator('ControleOdValidator')
+  Route.post('/controle-ods', 'ControleOdController.store').validator('ControleOdValidator')
   Route.put('/controle-ods/:id', 'ControleOdController.update').validator('ControleOdValidator')
   Route.delete('/controle-ods/:id', 'ControleOdController.destroy')
 
   //Controle Ph
   Route.get('/controle-phs', 'ControlePhController.index')
   Route.get('/controle-phs/:id', 'ControlePhController.show')
-  Route.post('/controle-phs/store', 'ControlePhController.store').validator('ControlePhValidator')
+  Route.post('/controle-phs', 'ControlePhController.store').validator('ControlePhValidator')
   Route.put('/controle-phs/:id', 'ControlePhController.update').validator('ControlePhValidator')
   Route.delete('/controle-phs/:id', 'ControlePhController.destroy')
 
@@ -92,7 +92,7 @@ Route.group(() => {
   //Controle Vazao
   Route.get('/controle-vazaos', 'ControleVazaoController.index')
   Route.get('/controle-vazaos/:id', 'ControleVazaoController.show')
-  Route.post('/controle-vazaos/store', 'ControleVazaoController.store').validator('ControleVazaoValidator')
+  Route.post('/controle-vazaos', 'ControleVazaoController.store').validator('ControleVazaoValidator')
   Route.put('/controle-vazaos/:id', 'ControleVazaoController.update').validator('ControleVazaoValidator')
   Route.delete('/controle-vazaos/:id', 'ControleVazaoController.destroy')
 

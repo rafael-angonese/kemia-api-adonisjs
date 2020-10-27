@@ -4,16 +4,19 @@ const ControleColeta = use('App/Models/ControleColeta')
 
 class ControleColetaController {
 
-  async index({ auth }) {
+  async index({ auth, request }) {
 
     let auth_user = await auth.getUser()
 
+    let { localId } = request.all();
+
 
     const controle_coletas = await ControleColeta.query()
-      .where('empresa_id', auth_user.empresa_id)
-      // .where('local_id', auth_user.local_id) //////
-      .with('empresa')
-      .with('local')
+      // .where('empresa_id', auth_user.empresa_id)
+      // .where('local_id', auth_user.local_id)
+      .where('local_id', localId)
+      // .with('empresa')
+      // .with('local')
       .fetch()
 
     return controle_coletas
