@@ -1,91 +1,73 @@
-'use strict'
+"use strict";
 
-const Local = use('App/Models/Local')
+const Local = use("App/Models/Local");
 
 class LocalController {
-
   async index({ request, auth }) {
+    let auth_user = await auth.getUser();
 
-    let auth_user = await auth.getUser()
+    let { empresaId } = request.all();
 
-    let { empresaId } = request.all()
-
-    if(!empresaId) {
-      empresaId = auth_user.empresa_id
+    if (!empresaId) {
+      empresaId = auth_user.empresa_id;
     }
 
     const locais = await Local.query()
-      .where('empresa_id', empresaId)
-      // .with('empresa')
-      .with('users', qr => qr.select('id', 'nome') )
-      .fetch()
+      .where("empresa_id", empresaId)
+      .with("users", (qr) => qr.select("id", "nome"))
+      .fetch();
 
-    return locais
+    return locais;
   }
 
   async show({ params }) {
+    const local = await Local.find(params.id);
 
-    const local = await Local.find(params.id)
+    await local.load("users");
 
-    await local.load('users')
-
-    return local
+    return local;
   }
 
   async store({ request, response }) {
-    const data = request.only([
-      'nome',
-      'descricao',
-      'endereco',
-      'empresa_id',
-    ])
+    const data = request.only(["nome", "descricao", "endereco", "empresa_id"]);
 
-    const local = await Local.create(data)
+    const local = await Local.create(data);
 
-
-    const { users } = request.post()
+    const { users } = request.post();
 
     if (users && users.length > 0) {
-      await local.users().attach(users)
+      await local.users().attach(users);
     }
 
-    return response.status(201).json(local)
+    return response.status(201).json(local);
   }
 
   async update({ request, params, response }) {
+    const data = request.only(["nome", "descricao", "endereco", "empresa_id"]);
 
-    const data = request.only([
-      'nome',
-      'descricao',
-      'endereco',
-      'empresa_id',
-    ])
+    const local = await Local.find(params.id);
 
-    const local = await Local.find(params.id)
+    local.merge(data);
 
-    local.merge(data)
+    await local.save();
 
-    await local.save()
-
-    const { users } = request.post()
+    const { users } = request.post();
 
     if (users && users.length > 0) {
-      await local.users().detach()
-      await local.users().attach(users)
+      await local.users().detach();
+      await local.users().attach(users);
     }
 
-    return local
+    return local;
   }
 
   async destroy({ params, response }) {
+    const local = await Local.find(params.id);
 
-    const local = await Local.find(params.id)
+    await local.delete();
 
-    await local.delete()
-
-    response.status(204).send('')
+    response.status(204).send("");
   }
-
 }
 
-module.exports = LocalController
+module.exports = LocalController;

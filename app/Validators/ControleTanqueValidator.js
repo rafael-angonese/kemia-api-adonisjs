@@ -20,6 +20,7 @@ class ControleTanqueValidator {
             tempo_desligado_5cv: 'required',
             acao_corretiva: 'required',
             empresa_id: 'required|exists:empresas,id',
+            local_id: 'required|exists:locais,id',
             tanque_id: 'required|exists:tanques,id',
         }
     }

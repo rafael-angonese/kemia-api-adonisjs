@@ -1,53 +1,66 @@
-'use strict'
+"use strict";
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use("Model");
 
 class Local extends Model {
+  static get table() {
+    return "locais";
+  }
 
-    static get table() {
-        return 'locais'
-    }
+  empresa() {
+    return this.belongsTo("App/Models/Empresa");
+  }
 
-    empresa() {
-        return this.belongsTo('App/Models/Empresa')
-    }
+  users() {
+    return this.belongsToMany("App/Models/User")
+      .pivotTable("local_usuario")
+      .withTimestamps();
+  }
 
-    users() {
-        return this.belongsToMany('App/Models/User').pivotTable('local_usuario').withTimestamps()
-    }
+  equipamentos() {
+    return this.hasMany("App/Models/Equipamento");
+  }
 
-    equipamentos() {
-        return this.hasMany('App/Models/Equipamento')
-    }
+  equipamentosManutencao() {
+    return this.hasMany("App/Models/EquipamentoManutencao");
+  }
 
-    tanques() {
-        return this.hasMany('App/Models/Tanque')
-    }
+  controleTanques() {
+    return this.hasMany("App/Models/ControleTanque");
+  }
 
-    controleColetas() {
-        return this.hasMany('App/Models/ControleColeta')
-    }
+  controleBombas() {
+    return this.hasMany("App/Models/ControleBomba");
+  }
 
-    controleOds() {
-        return this.hasMany('App/Models/ControleOd')
-    }
+  tanques() {
+    return this.hasMany("App/Models/Tanque");
+  }
 
-    controlePhs() {
-        return this.hasMany('App/Models/ControlePh')
-    }
+  controleColetas() {
+    return this.hasMany("App/Models/ControleColeta");
+  }
 
-    controleSses() {
-        return this.hasMany('App/Models/ControleSs')
-    }
+  controleOds() {
+    return this.hasMany("App/Models/ControleOd");
+  }
 
-    controleConcentracaoCloros() {
-        return this.hasMany('App/Models/ControleConcentracaoCloro')
-    }
+  controlePhs() {
+    return this.hasMany("App/Models/ControlePh");
+  }
 
-    controlePastilhaCloros() {
-        return this.hasMany('App/Models/ControlePastilhaCloro')
-    }
+  controleSses() {
+    return this.hasMany("App/Models/ControleSs");
+  }
+
+  controleConcentracaoCloros() {
+    return this.hasMany("App/Models/ControleConcentracaoCloro");
+  }
+
+  controlePastilhaCloros() {
+    return this.hasMany("App/Models/ControlePastilhaCloro");
+  }
 }
 
-module.exports = Local
+module.exports = Local;

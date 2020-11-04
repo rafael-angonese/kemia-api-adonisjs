@@ -12,6 +12,14 @@ class CreateEquipamentoManutencaoSchema extends Schema {
       table.string('problema').notNullable()
 
       table
+        .integer('local_id')
+        .unsigned()
+        .references('id')
+        .inTable('locais')
+        .onDelete('SET NULL')
+        .onUpdate('CASCADE')
+        
+      table
         .integer('equipamento_id')
         .unsigned()
         .references('id')

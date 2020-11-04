@@ -16,6 +16,7 @@ class ControleBombaValidator {
             corrente: 'required|number',
             acao_corretiva: 'required',
             empresa_id: 'required|exists:empresas,id',
+            local_id: 'required|exists:locais,id',
             equipamento_id: 'required|exists:equipamentos,id',
         }
     }

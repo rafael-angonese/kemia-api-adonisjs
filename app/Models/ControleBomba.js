@@ -12,6 +12,10 @@ class ControleBomba extends Model {
     equipamento() {
         return this.belongsTo('App/Models/Equipamento')
     }
+
+    local() {
+      return this.belongsTo("App/Models/Local");
+    }
 }
 
 module.exports = ControleBomba

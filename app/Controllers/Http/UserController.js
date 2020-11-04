@@ -16,7 +16,6 @@ class UserController {
     const users = await User.query()
       .select("id", "username", "nome", "tipo", "empresa_id")
       .where("empresa_id", empresaId)
-      // .with('empresa')
       .with("locais", (qr) => qr.where("empresa_id", empresaId))
       .fetch();
 
@@ -30,8 +29,6 @@ class UserController {
       .with("empresa")
       .with("locais")
       .first();
-
-    //await user.load('empresa')
 
     return user;
   }
@@ -81,10 +78,7 @@ class UserController {
 
     const { locais } = request.post();
 
-    await LocalUsuario.query()
-      // .where("empresa_id", empresaId)
-      .where("user_id", user.id)
-      .delete();
+    await LocalUsuario.query().where("user_id", user.id).delete();
 
     if (locais && locais.length > 0) {
       await user.locais().attach(locais);

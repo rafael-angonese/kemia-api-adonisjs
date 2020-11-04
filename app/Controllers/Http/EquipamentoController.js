@@ -1,73 +1,49 @@
-'use strict'
+"use strict";
 
-const Equipamento = use('App/Models/Equipamento')
+const Equipamento = use("App/Models/Equipamento");
 
 class EquipamentoController {
-
-  async index({ auth, request }) {
-
-    // let auth_user = await auth.getUser()
-
+  async index({ request }) {
     let { localId } = request.all();
 
-
     const equipamentos = await Equipamento.query()
-      // .where('empresa_id', auth_user.empresa_id)
-      // .where('local_id', auth_user.local_id)
-      .where('local_id', localId)
-      // .with('empresa')
-      // .with('local')
-      .fetch()
+      .where("local_id", localId)
+      .fetch();
 
-    return equipamentos
+    return equipamentos;
   }
 
   async show({ params }) {
+    const equipamento = await Equipamento.find(params.id);
 
-    const equipamento = await Equipamento.find(params.id)
-
-    return equipamento
+    return equipamento;
   }
 
   async store({ request, response }) {
-    const data = request.only([
-      'nome',
-      'descricao',
-      'empresa_id',
-      'local_id',
-    ])
+    const data = request.only(["nome", "descricao", "empresa_id", "local_id"]);
 
-    const equipamento = await Equipamento.create(data)
+    const equipamento = await Equipamento.create(data);
 
-    return response.status(201).json(equipamento)
+    return response.status(201).json(equipamento);
   }
 
   async update({ request, params, response }) {
+    const data = request.only(["nome", "descricao", "empresa_id", "local_id"]);
 
-    const data = request.only([
-      'nome',
-      'descricao',
-      'empresa_id',
-      'local_id',
-    ])
+    const equipamento = await Equipamento.find(params.id);
 
-    const equipamento = await Equipamento.find(params.id)
+    equipamento.merge(data);
 
-    equipamento.merge(data)
+    await equipamento.save();
 
-    await equipamento.save()
-
-    return equipamento
+    return equipamento;
   }
 
   async destroy({ params }) {
+    const equipamento = await Equipamento.find(params.id);
 
-    const equipamento = await Equipamento.find(params.id)
-
-    await equipamento.delete()
-
+    await equipamento.delete();
   }
-
 }
 
-module.exports = EquipamentoController
+module.exports = EquipamentoController;

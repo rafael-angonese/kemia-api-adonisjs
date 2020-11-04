@@ -1,75 +1,62 @@
-'use strict'
+"use strict";
 
-const ControleVazao = use('App/Models/ControleVazao')
+const ControleVazao = use("App/Models/ControleVazao");
 
 class ControleVazaoController {
-
-  async index({ auth, request }) {
-
-    let auth_user = await auth.getUser()
-
-    let { localId } = request.all();
+  async index({ request }) {
+    let { localId, startDate, endDate } = request.all();
 
     const controle_vazaos = await ControleVazao.query()
-      // .where('empresa_id', auth_user.empresa_id)
-      // .where('local_id', auth_user.local_id)
-      .where('local_id', localId)
-      // .with('empresa')
-      // .with('local')
-      .fetch()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .fetch();
 
-    return controle_vazaos
+    return controle_vazaos;
   }
 
   async show({ params }) {
+    const controle_vazao = await ControleVazao.find(params.id);
 
-    const controle_vazao = await ControleVazao.find(params.id)
-
-    return controle_vazao
+    return controle_vazao;
   }
 
   async store({ request, response }) {
     const data = request.only([
-      'data',
-      'hora',
-      'vazao_dia',
-      'empresa_id',
-      'local_id',
-    ])
+      "data",
+      "hora",
+      "vazao_dia",
+      "empresa_id",
+      "local_id",
+    ]);
 
-    const controle_vazao = await ControleVazao.create(data)
+    const controle_vazao = await ControleVazao.create(data);
 
-    return response.status(201).json(controle_vazao)
+    return response.status(201).json(controle_vazao);
   }
 
   async update({ request, params, response }) {
-
     const data = request.only([
-      'data',
-      'hora',
-      'vazao_dia',
-      'empresa_id',
-      'local_id',
-    ])
+      "data",
+      "hora",
+      "vazao_dia",
+      "empresa_id",
+      "local_id",
+    ]);
 
+    const controle_vazao = await ControleVazao.find(params.id);
 
-    const controle_vazao = await ControleVazao.find(params.id)
+    controle_vazao.merge(data);
 
-    controle_vazao.merge(data)
+    await controle_vazao.save();
 
-    await controle_vazao.save()
-
-    return controle_vazao
+    return controle_vazao;
   }
 
   async destroy({ params }) {
+    const controle_vazao = await ControleVazao.find(params.id);
 
-    const controle_vazao = await ControleVazao.find(params.id)
-
-    await controle_vazao.delete()
-
+    await controle_vazao.delete();
   }
-
 }
 
-module.exports = ControleVazaoController
+module.exports = ControleVazaoController;

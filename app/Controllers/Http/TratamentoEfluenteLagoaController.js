@@ -3,17 +3,13 @@
 const TratamentoEfluenteLagoa = use("App/Models/TratamentoEfluenteLagoa");
 
 class TratamentoEfluenteLagoaController {
-  async index({ auth, request }) {
-    // let auth_user = await auth.getUser()
-
-    let { localId } = request.all();
+  async index({ request }) {
+    let { localId, startDate, endDate } = request.all();
 
     const tratamentos = await TratamentoEfluenteLagoa.query()
-      // .where('empresa_id', auth_user.empresa_id)
-      // .where('local_id', auth_user.local_id)
       .where("local_id", localId)
-      // .with('empresa')
-      .with('lagoa')
+      .whereBetween("data", [startDate, endDate])
+      .with("lagoa")
       .fetch();
 
     return tratamentos;

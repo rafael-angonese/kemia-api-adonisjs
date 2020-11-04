@@ -4,13 +4,13 @@ const EquipamentoManutencao = use('App/Models/EquipamentoManutencao')
 
 class EquipamentoManutencaoController {
 
-  async index({ auth, request }) {
+  async index({ request }) {
 
-    let { empresaId } = request.all();
+    let { localId, startDate, endDate } = request.all();
 
     const equipamento_manutencaos = await EquipamentoManutencao.query()
-      .where('empresa_id', empresaId)
-      // .with('empresa')
+      .where('local_id', localId)
+      .whereBetween("saida", [startDate, endDate])
       .with('equipamento')
       .fetch()
 
@@ -30,6 +30,7 @@ class EquipamentoManutencaoController {
       'retorno',
       'problema',
       'equipamento_id',
+      'local_id',
       'empresa_id',
     ])
 
@@ -45,6 +46,7 @@ class EquipamentoManutencaoController {
       'retorno',
       'problema',
       'equipamento_id',
+      'local_id',
       'empresa_id',
     ])
 

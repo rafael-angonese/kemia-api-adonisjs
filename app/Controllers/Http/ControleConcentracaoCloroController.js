@@ -1,77 +1,72 @@
-'use strict'
+"use strict";
 
-const ControleConcentracaoCloro = use('App/Models/ControleConcentracaoCloro')
+const ControleConcentracaoCloro = use("App/Models/ControleConcentracaoCloro");
 
 class ControleConcentracaoCloroController {
-
-  async index({ auth, request }) {
-
-    // let auth_user = await auth.getUser()
-
-    let { localId } = request.all();
+  async index({ request }) {
+    let { localId, startDate, endDate } = request.all();
 
     const controle_concentracao_cloros = await ControleConcentracaoCloro.query()
-      // .where('empresa_id', auth_user.empresa_id)
-      // .where('local_id', auth_user.local_id)
-      .where('local_id', localId)
-      // .with('empresa')
-      // .with('local')
-      .fetch()
+      .whereBetween("data", [startDate, endDate])
+      .where("local_id", localId)
+      .fetch();
 
-    return controle_concentracao_cloros
+    return controle_concentracao_cloros;
   }
 
   async show({ params }) {
+    const controle_concentracao_cloro = await ControleConcentracaoCloro.find(
+      params.id
+    );
 
-    const controle_concentracao_cloro = await ControleConcentracaoCloro.find(params.id)
-
-    return controle_concentracao_cloro
+    return controle_concentracao_cloro;
   }
 
   async store({ request, response }) {
     const data = request.only([
-      'data',
-      'hora',
-      'tratado',
-      'acao_corretiva',
-      'empresa_id',
-      'local_id',
-    ])
+      "data",
+      "hora",
+      "tratado",
+      "acao_corretiva",
+      "empresa_id",
+      "local_id",
+    ]);
 
-    const controle_concentracao_cloro = await ControleConcentracaoCloro.create(data)
+    const controle_concentracao_cloro = await ControleConcentracaoCloro.create(
+      data
+    );
 
-    return response.status(201).json(controle_concentracao_cloro)
+    return response.status(201).json(controle_concentracao_cloro);
   }
 
   async update({ request, params, response }) {
-
     const data = request.only([
-      'data',
-      'hora',
-      'tratado',
-      'acao_corretiva',
-      'empresa_id',
-      'local_id',
-    ])
+      "data",
+      "hora",
+      "tratado",
+      "acao_corretiva",
+      "empresa_id",
+      "local_id",
+    ]);
 
+    const controle_concentracao_cloro = await ControleConcentracaoCloro.find(
+      params.id
+    );
 
-    const controle_concentracao_cloro = await ControleConcentracaoCloro.find(params.id)
+    controle_concentracao_cloro.merge(data);
 
-    controle_concentracao_cloro.merge(data)
+    await controle_concentracao_cloro.save();
 
-    await controle_concentracao_cloro.save()
-
-    return controle_concentracao_cloro
+    return controle_concentracao_cloro;
   }
 
   async destroy({ params }) {
+    const controle_concentracao_cloro = await ControleConcentracaoCloro.find(
+      params.id
+    );
 
-    const controle_concentracao_cloro = await ControleConcentracaoCloro.find(params.id)
-
-    await controle_concentracao_cloro.delete()
-
+    await controle_concentracao_cloro.delete();
   }
-
 }
 
-module.exports = ControleConcentracaoCloroController
+module.exports = ControleConcentracaoCloroController;

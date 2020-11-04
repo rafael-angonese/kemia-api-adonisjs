@@ -1,17 +1,20 @@
-'use strict'
+"use strict";
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use("Model");
 
 class ControleTanque extends Model {
+  empresa() {
+    return this.belongsTo("App/Models/Empresa");
+  }
 
-    empresa() {
-        return this.belongsTo('App/Models/Empresa')
-    }
+  tanque() {
+    return this.belongsTo("App/Models/Tanque");
+  }
 
-    tanque() {
-        return this.belongsTo('App/Models/Tanque')
-    }
+  local() {
+    return this.belongsTo("App/Models/Local");
+  }
 }
 
-module.exports = ControleTanque
+module.exports = ControleTanque;
