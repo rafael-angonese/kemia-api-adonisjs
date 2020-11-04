@@ -21,6 +21,12 @@ class PolimentoEtaController {
     return polimento;
   }
 
+  async sendEmail({ request }) {
+    const { localId, startDate, endDate, email, tipo } = request.all();
+
+    return localId
+  }
+
   async store({ auth, request, response }) {
     let auth_user = await auth.getUser();
 

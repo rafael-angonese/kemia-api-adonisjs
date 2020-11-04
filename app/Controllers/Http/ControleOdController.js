@@ -20,6 +20,12 @@ class ControleOdController {
     return controle_od;
   }
 
+  async sendEmail({ request }) {
+    const { localId, startDate, endDate, email, tipo } = request.all();
+
+    return localId
+  }
+
   async store({ request, response }) {
     const data = request.only([
       "data",

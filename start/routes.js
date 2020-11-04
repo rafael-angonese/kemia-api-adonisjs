@@ -63,6 +63,7 @@ Route.group(() => {
 
   //Controle Coleta
   Route.get('/controle-coletas', 'ControleColetaController.index')
+  Route.get('/controle-coletas/sendEmail', 'ControleColetaController.sendEmail')
   Route.get('/controle-coletas/:id', 'ControleColetaController.show')
   Route.post('/controle-coletas', 'ControleColetaController.store').validator('ControleColetaValidator')
   Route.put('/controle-coletas/:id', 'ControleColetaController.update').validator('ControleColetaValidator')
@@ -70,6 +71,7 @@ Route.group(() => {
 
   //Controle Od
   Route.get('/controle-ods', 'ControleOdController.index')
+  Route.get('/controle-ods/sendEmail', 'ControleOdController.sendEmail')
   Route.get('/controle-ods/:id', 'ControleOdController.show')
   Route.post('/controle-ods', 'ControleOdController.store').validator('ControleOdValidator')
   Route.put('/controle-ods/:id', 'ControleOdController.update').validator('ControleOdValidator')
@@ -77,6 +79,7 @@ Route.group(() => {
 
   //Controle Ph
   Route.get('/controle-phs', 'ControlePhController.index')
+  Route.get('/controle-phs/sendEmail', 'ControlePhController.sendEmail')
   Route.get('/controle-phs/:id', 'ControlePhController.show')
   Route.post('/controle-phs', 'ControlePhController.store').validator('ControlePhValidator')
   Route.put('/controle-phs/:id', 'ControlePhController.update').validator('ControlePhValidator')
@@ -84,6 +87,7 @@ Route.group(() => {
 
   //Controle Ss
   Route.get('/controle-sses', 'ControleSsController.index')
+  Route.get('/controle-sses/sendEmail', 'ControleSsController.sendEmail')
   Route.get('/controle-sses/:id', 'ControleSsController.show')
   Route.post('/controle-sses', 'ControleSsController.store').validator('ControleSsValidator')
   Route.put('/controle-sses/:id', 'ControleSsController.update').validator('ControleSsValidator')
@@ -91,6 +95,7 @@ Route.group(() => {
 
   //Controle Vazao
   Route.get('/controle-vazaos', 'ControleVazaoController.index')
+  Route.get('/controle-vazaos/sendEmail', 'ControleVazaoController.sendEmail')
   Route.get('/controle-vazaos/:id', 'ControleVazaoController.show')
   Route.post('/controle-vazaos', 'ControleVazaoController.store').validator('ControleVazaoValidator')
   Route.put('/controle-vazaos/:id', 'ControleVazaoController.update').validator('ControleVazaoValidator')
@@ -98,6 +103,7 @@ Route.group(() => {
 
   //Controle Tanque
   Route.get('/controle-tanques', 'ControleTanqueController.index')
+  Route.get('/controle-tanques/sendEmail', 'ControleTanqueController.sendEmail')
   Route.get('/controle-tanques/:id', 'ControleTanqueController.show')
   Route.post('/controle-tanques', 'ControleTanqueController.store').validator('ControleTanqueValidator')
   Route.put('/controle-tanques/:id', 'ControleTanqueController.update').validator('ControleTanqueValidator')
@@ -105,6 +111,7 @@ Route.group(() => {
 
   //Controle Bomba
   Route.get('/controle-bombas', 'ControleBombaController.index')
+  Route.get('/controle-bombas/sendEmail', 'ControleBombaController.sendEmail')
   Route.get('/controle-bombas/:id', 'ControleBombaController.show')
   Route.post('/controle-bombas', 'ControleBombaController.store').validator('ControleBombaValidator')
   Route.put('/controle-bombas/:id', 'ControleBombaController.update').validator('ControleBombaValidator')
@@ -112,6 +119,7 @@ Route.group(() => {
 
   //Equipamento Manutencao
   Route.get('/equipamento-manutencaos', 'EquipamentoManutencaoController.index')
+  Route.get('/equipamento-manutencaos/sendEmail', 'EquipamentoManutencaoController.sendEmail')
   Route.get('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.show')
   Route.post('/equipamento-manutencaos', 'EquipamentoManutencaoController.store').validator('EquipamentoManutencaoValidator')
   Route.put('/equipamento-manutencaos/:id', 'EquipamentoManutencaoController.update').validator('EquipamentoManutencaoValidator')
@@ -119,6 +127,7 @@ Route.group(() => {
 
   //Controle Concentracao Cloro
   Route.get('/controle-concentracao-cloros', 'ControleConcentracaoCloroController.index')
+  Route.get('/controle-concentracao-cloros/sendEmail', 'ControleConcentracaoCloroController.sendEmail')
   Route.get('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.show')
   Route.post('/controle-concentracao-cloros', 'ControleConcentracaoCloroController.store').validator('ControleConcentracaoCloroValidator')
   Route.put('/controle-concentracao-cloros/:id', 'ControleConcentracaoCloroController.update').validator('ControleConcentracaoCloroValidator')
@@ -126,6 +135,7 @@ Route.group(() => {
 
   //Controle Pastilha Cloro
   Route.get('/controle-pastilha-cloros', 'ControlePastilhaCloroController.index')
+  Route.get('/controle-pastilha-cloros/sendEmail', 'ControlePastilhaCloroController.sendEmail')
   Route.get('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.show')
   Route.post('/controle-pastilha-cloros', 'ControlePastilhaCloroController.store').validator('ControlePastilhaCloroValidator')
   Route.put('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.update').validator('ControlePastilhaCloroValidator')
@@ -147,6 +157,7 @@ Route.group(() => {
 
   // Polimento Eta
   Route.get('/polimento-etas', 'PolimentoEtaController.index')
+  Route.get('/polimento-etas/sendEmail', 'PolimentoEtaController.sendEmail')
   Route.get('/polimento-etas/:id', 'PolimentoEtaController.show')
   Route.post('/polimento-etas', 'PolimentoEtaController.store').validator('PolimentoEtaValidator')
   Route.put('/polimento-etas/:id', 'PolimentoEtaController.update').validator('PolimentoEtaValidator')
@@ -154,6 +165,7 @@ Route.group(() => {
 
  // Tratamento Efluente Lagoa
  Route.get('/tratamento-efluente-lagoas', 'TratamentoEfluenteLagoaController.index')
+ Route.get('/tratamento-efluente-lagoas/sendEmail', 'TratamentoEfluenteLagoaController.sendEmail')
  Route.get('/tratamento-efluente-lagoas/:id', 'TratamentoEfluenteLagoaController.show')
  Route.post('/tratamento-efluente-lagoas', 'TratamentoEfluenteLagoaController.store').validator('TratamentoEfluenteLagoaValidator')
  Route.put('/tratamento-efluente-lagoas/:id', 'TratamentoEfluenteLagoaController.update').validator('TratamentoEfluenteLagoaValidator')

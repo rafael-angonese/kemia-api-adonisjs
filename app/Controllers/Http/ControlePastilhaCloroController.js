@@ -20,6 +20,12 @@ class ControlePastilhaCloroController {
     return controle_pastilha_cloro;
   }
 
+  async sendEmail({ request }) {
+    const { localId, startDate, endDate, email, tipo } = request.all();
+
+    return localId
+  }
+
   async store({ request, response }) {
     const data = request.only([
       "data",
