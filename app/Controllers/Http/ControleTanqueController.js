@@ -4,14 +4,17 @@ const ControleTanque = use('App/Models/ControleTanque')
 
 class ControleTanqueController {
 
-  async index({ auth }) {
+  async index({ auth, request }) {
 
     let auth_user = await auth.getUser()
 
+    let { localId } = request.all();
+
 
     const controle_tanques = await ControleTanque.query()
-      .where('empresa_id', auth_user.empresa_id)
-      .with('empresa')
+      // .where('empresa_id', auth_user.empresa_id)
+      // .where('local_id', localId)
+      // .with('empresa')
       .with('tanque')
       .fetch()
 

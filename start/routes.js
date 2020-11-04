@@ -85,7 +85,7 @@ Route.group(() => {
   //Controle Ss
   Route.get('/controle-sses', 'ControleSsController.index')
   Route.get('/controle-sses/:id', 'ControleSsController.show')
-  Route.post('/controle-sses/store', 'ControleSsController.store').validator('ControleSsValidator')
+  Route.post('/controle-sses', 'ControleSsController.store').validator('ControleSsValidator')
   Route.put('/controle-sses/:id', 'ControleSsController.update').validator('ControleSsValidator')
   Route.delete('/controle-sses/:id', 'ControleSsController.destroy')
 
@@ -99,14 +99,14 @@ Route.group(() => {
   //Controle Tanque
   Route.get('/controle-tanques', 'ControleTanqueController.index')
   Route.get('/controle-tanques/:id', 'ControleTanqueController.show')
-  Route.post('/controle-tanques/store', 'ControleTanqueController.store').validator('ControleTanqueValidator')
+  Route.post('/controle-tanques', 'ControleTanqueController.store').validator('ControleTanqueValidator')
   Route.put('/controle-tanques/:id', 'ControleTanqueController.update').validator('ControleTanqueValidator')
   Route.delete('/controle-tanques/:id', 'ControleTanqueController.destroy')
 
   //Controle Bomba
   Route.get('/controle-bombas', 'ControleBombaController.index')
   Route.get('/controle-bombas/:id', 'ControleBombaController.show')
-  Route.post('/controle-bombas/store', 'ControleBombaController.store').validator('ControleBombaValidator')
+  Route.post('/controle-bombas', 'ControleBombaController.store').validator('ControleBombaValidator')
   Route.put('/controle-bombas/:id', 'ControleBombaController.update').validator('ControleBombaValidator')
   Route.delete('/controle-bombas/:id', 'ControleBombaController.destroy')
 
@@ -131,6 +131,33 @@ Route.group(() => {
   Route.put('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.update').validator('ControlePastilhaCloroValidator')
   Route.delete('/controle-pastilha-cloros/:id', 'ControlePastilhaCloroController.destroy')
 
+  // Etas
+  Route.get('/etas', 'EtaController.index')
+  Route.get('/etas/:id', 'EtaController.show')
+  Route.post('/etas', 'EtaController.store').validator('EtaValidator')
+  Route.put('/etas/:id', 'EtaController.update').validator('EtaValidator')
+  Route.delete('/etas/:id', 'EtaController.destroy')
+
+  // Lagoas
+  Route.get('/lagoas', 'LagoaController.index')
+  Route.get('/lagoas/:id', 'LagoaController.show')
+  Route.post('/lagoas', 'LagoaController.store').validator('LagoaValidator')
+  Route.put('/lagoas/:id', 'LagoaController.update').validator('LagoaValidator')
+  Route.delete('/lagoas/:id', 'LagoaController.destroy')
+
+  // Polimento Eta
+  Route.get('/polimento-etas', 'PolimentoEtaController.index')
+  Route.get('/polimento-etas/:id', 'PolimentoEtaController.show')
+  Route.post('/polimento-etas', 'PolimentoEtaController.store').validator('PolimentoEtaValidator')
+  Route.put('/polimento-etas/:id', 'PolimentoEtaController.update').validator('PolimentoEtaValidator')
+  Route.delete('/polimento-etas/:id', 'PolimentoEtaController.destroy')
+
+ // Tratamento Efluente Lagoa
+ Route.get('/tratamento-efluente-lagoas', 'TratamentoEfluenteLagoaController.index')
+ Route.get('/tratamento-efluente-lagoas/:id', 'TratamentoEfluenteLagoaController.show')
+ Route.post('/tratamento-efluente-lagoas', 'TratamentoEfluenteLagoaController.store').validator('TratamentoEfluenteLagoaValidator')
+ Route.put('/tratamento-efluente-lagoas/:id', 'TratamentoEfluenteLagoaController.update').validator('TratamentoEfluenteLagoaValidator')
+ Route.delete('/tratamento-efluente-lagoas/:id', 'TratamentoEfluenteLagoaController.destroy')
 
 })
 //.middleware('auth')

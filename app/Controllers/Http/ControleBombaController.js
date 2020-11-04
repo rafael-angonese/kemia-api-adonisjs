@@ -4,14 +4,15 @@ const ControleBomba = use('App/Models/ControleBomba')
 
 class ControleBombaController {
 
-  async index({ auth }) {
+  async index({ auth, request }) {
 
     let auth_user = await auth.getUser()
 
+    let { localId } = request.all();
 
     const controle_bombas = await ControleBomba.query()
-      .where('empresa_id', auth_user.empresa_id)
-      .with('empresa')
+      // .where('empresa_id', auth_user.empresa_id)
+      // .with('empresa')
       .with('equipamento')
       .fetch()
 
@@ -48,6 +49,7 @@ class ControleBombaController {
       'hora',
       'leitura',
       'corrente',
+      'acao_corretiva',
       'empresa_id',
       'equipamento_id',
     ])
