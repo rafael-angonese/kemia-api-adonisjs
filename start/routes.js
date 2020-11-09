@@ -27,6 +27,7 @@ Route.post('/authenticate', 'AuthController.authenticate').validator('Authentica
 Route.group(() => {
 
   //User
+  Route.get('/operadores', 'UserController.operadores')
   Route.get('/users', 'UserController.index')
   Route.get('/users/:id', 'UserController.show')
   Route.post('/users', 'UserController.store').validator('UserStoreValidator')
@@ -36,9 +37,28 @@ Route.group(() => {
   //Empresa
   Route.get('/empresas', 'EmpresaController.index')
   Route.get('/empresas/:id', 'EmpresaController.show')
-  Route.post('/empresas/store', 'EmpresaController.store').validator('EmpresaValidator')
+  Route.post('/empresas', 'EmpresaController.store').validator('EmpresaValidator')
   Route.put('/empresas/:id', 'EmpresaController.update').validator('EmpresaValidator')
   Route.delete('/empresas/:id', 'EmpresaController.destroy')
+
+  //Configuração
+  Route.get('/configuracaos', 'ConfiguracaoController.index')
+  Route.get('/configuracaos/:id', 'ConfiguracaoController.show')
+  Route.post('/configuracaos', 'ConfiguracaoController.store')
+  Route.put('/configuracaos/:id', 'ConfiguracaoController.update').validator('ConfiguracaoValidator')
+  Route.delete('/configuracaos/:id', 'ConfiguracaoController.destroy')
+
+  //Tarefa
+  Route.get('/tarefas/operador', 'TarefaController.operador')
+  Route.get('/tarefas', 'TarefaController.index')
+  Route.get('/tarefas/:id', 'TarefaController.show')
+  Route.post('/tarefas', 'TarefaController.store') //.validator('TarefaValidator')
+  Route.put('/tarefas/:id', 'TarefaController.update').validator('TarefaValidator')
+  Route.delete('/tarefas/:id', 'TarefaController.destroy')
+
+  //Notificacao
+  Route.get('/notificacaos', 'NotificacaoController.index')
+  Route.get('/notificacaos/:id', 'NotificacaoController.show')
 
   //Local
   Route.get('/locais', 'LocalController.index')
@@ -172,4 +192,4 @@ Route.group(() => {
  Route.delete('/tratamento-efluente-lagoas/:id', 'TratamentoEfluenteLagoaController.destroy')
 
 })
-//.middleware('auth')
+.middleware('auth')

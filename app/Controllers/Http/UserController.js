@@ -4,19 +4,27 @@ const User = use("App/Models/User");
 const LocalUsuario = use("App/Models/LocalUsuario");
 
 class UserController {
-  async index({ request, auth, response }) {
-    const auth_user = await auth.getUser();
+  async index({ request, response }) {
 
     let { empresaId } = request.all();
-
-    if (!empresaId) {
-      empresaId = auth_user.empresa_id;
-    }
 
     const users = await User.query()
       .select("id", "username", "nome", "tipo", "empresa_id")
       .where("empresa_id", empresaId)
       .with("locais", (qr) => qr.where("empresa_id", empresaId))
+      .fetch();
+
+    return users;
+  }
+
+  async operadores({ request, auth, response }) {
+
+    let { empresaId } = request.all();
+
+    const users = await User.query()
+      .select("id", "username", "nome", "tipo", "empresa_id")
+      .where("empresa_id", empresaId)
+      .where('tipo', 'operator')
       .fetch();
 
     return users;
@@ -59,16 +67,9 @@ class UserController {
     });
   }
 
-  async update({ request, auth, params, response }) {
-    let auth_user = await auth.getUser();
+  async update({ request, params, response }) {
 
     const data = request.only(["username", "nome", "tipo", "empresa_id"]);
-
-    let { empresaId } = request.all();
-
-    if (!empresaId) {
-      empresaId = auth_user.empresa_id;
-    }
 
     const user = await User.find(params.id);
 

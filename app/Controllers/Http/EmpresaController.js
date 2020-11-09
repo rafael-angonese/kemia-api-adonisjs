@@ -1,58 +1,91 @@
-'use strict'
+"use strict";
 
-const Empresa = use('App/Models/Empresa')
+const Empresa = use("App/Models/Empresa");
+const Configuracao = use("App/Models/Configuracao");
 
 class EmpresaController {
-
   async index() {
+    const empresas = await Empresa.query().fetch();
 
-    const empresas = await Empresa.query().fetch()
-
-    return empresas
+    return empresas;
   }
 
   async show({ params }) {
+    const empresa = await Empresa.find(params.id);
 
-    const empresa = await Empresa.find(params.id)
-
-    return empresa
+    return empresa;
   }
 
   async store({ request, response }) {
-    const data = request.only([
-      'nome',
-      'descricao',
-    ])
+    const data = request.only(["nome", "descricao"]);
 
-    const empresa = await Empresa.create(data)
+    const empresa = await Empresa.create(data);
 
-    return response.status(201).json(empresa)
+    await Configuracao.create({
+      tipo: "OD",
+      bruto_min: "2",
+      bruto_max: "2",
+      reator1_min: "2",
+      reator1_max: "2",
+      reator2_min: "2",
+      reator2_max: "2",
+      reator3_min: "2",
+      reator3_max: "2",
+      tratado_min: "2",
+      tratado_max: "2",
+      empresa_id: empresa.id,
+    });
+
+    await Configuracao.create({
+      tipo: "SS",
+      bruto_min: "2",
+      bruto_max: "2",
+      reator1_min: "2",
+      reator1_max: "2",
+      reator2_min: "2",
+      reator2_max: "2",
+      reator3_min: "2",
+      reator3_max: "2",
+      tratado_min: "2",
+      tratado_max: "2",
+      empresa_id: empresa.id,
+    });
+
+    await Configuracao.create({
+      tipo: "PH",
+      bruto_min: "2",
+      bruto_max: "2",
+      reator1_min: "2",
+      reator1_max: "2",
+      reator2_min: "2",
+      reator2_max: "2",
+      reator3_min: "2",
+      reator3_max: "2",
+      tratado_min: "2",
+      tratado_max: "2",
+      empresa_id: empresa.id,
+    });
+
+    return response.status(201).json(empresa);
   }
 
   async update({ request, params, response }) {
+    const data = request.only(["nome", "descricao"]);
 
-    const data = request.only([
-      'nome',
-      'descricao',
-    ])
+    const empresa = await Empresa.find(params.id);
 
-    const empresa = await Empresa.find(params.id)
+    empresa.merge(data);
 
-    empresa.merge(data)
+    await empresa.save();
 
-    await empresa.save()
-
-    return empresa
+    return empresa;
   }
 
   async destroy({ params }) {
+    const empresa = await Empresa.find(params.id);
 
-    const empresa = await Empresa.find(params.id)
-
-    await empresa.delete()
-
+    await empresa.delete();
   }
-
 }
 
-module.exports = EmpresaController
+module.exports = EmpresaController;
