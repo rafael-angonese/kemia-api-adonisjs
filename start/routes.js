@@ -193,3 +193,6 @@ Route.group(() => {
 
 })
 .middleware('auth')
+
+Route.get('/controle-sses/:id/image-tratado', 'ControleSsController.showImageTratado')
+Route.get('/controle-sses/:id/image-bruto', 'ControleSsController.showImageBruto')

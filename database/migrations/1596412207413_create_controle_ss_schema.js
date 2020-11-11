@@ -15,6 +15,8 @@ class CreateControleSsSchema extends Schema {
       table.float('reator_3').notNullable()
       table.float('tratado').notNullable()
       table.string('acao_corretiva').notNullable()
+      table.string('efluente_bruto')
+      table.string('efluente_tratado')
 
       table
         .integer('local_id')
