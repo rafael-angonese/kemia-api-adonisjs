@@ -20,6 +20,10 @@ class PolimentoEta extends Model {
     operador() {
       return this.belongsTo('App/Models/User')
     }
+
+    files () {
+      return this.hasMany('App/Models/File')
+    }
 }
 
 module.exports = PolimentoEta

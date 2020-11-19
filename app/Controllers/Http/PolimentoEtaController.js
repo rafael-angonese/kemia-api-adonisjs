@@ -1,6 +1,7 @@
 "use strict";
 
 const PolimentoEta = use("App/Models/PolimentoEta");
+const Helpers = use("Helpers");
 
 class PolimentoEtaController {
   async index({ auth, request }) {
@@ -10,6 +11,7 @@ class PolimentoEtaController {
       .where("local_id", localId)
       .whereBetween("data", [startDate, endDate])
       .with("eta")
+      .with("files")
       .fetch();
 
     return polimentos;
@@ -18,13 +20,15 @@ class PolimentoEtaController {
   async show({ params }) {
     const polimento = await PolimentoEta.find(params.id);
 
+    await polimento.load("files");
+
     return polimento;
   }
 
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    return localId;
   }
 
   async store({ auth, request, response }) {
@@ -53,6 +57,26 @@ class PolimentoEtaController {
     data = { ...data, operador_id: auth_user.id };
 
     const polimento = await PolimentoEta.create(data);
+
+    const images = request.file("image", {
+      types: ["image"],
+    });
+
+    if (images) {
+      await images.moveAll(Helpers.tmpPath("uploads"), (file) => ({
+        name: `polimento-${polimento.id}-${Date.now()}-${file.clientName}`,
+      }));
+
+      if (!images.movedAll()) {
+        return images.errors();
+      }
+
+      await Promise.all(
+        images
+          .movedList()
+          .map((image) => polimento.files().create({ path: image.fileName }))
+      );
+    }
 
     return response.status(201).json(polimento);
   }
@@ -83,6 +107,26 @@ class PolimentoEtaController {
     polimento.merge(dados);
 
     await polimento.save();
+
+    const images = request.file("image", {
+      types: ["image"],
+    });
+
+    if (images) {
+      await images.moveAll(Helpers.tmpPath("uploads"), (file) => ({
+        name: `polimento-${polimento.id}-${Date.now()}-${file.clientName}`,
+      }));
+
+      if (!images.movedAll()) {
+        return images.errors();
+      }
+
+      await Promise.all(
+        images
+          .movedList()
+          .map((image) => polimento.files().create({ path: image.fileName }))
+      );
+    }
 
     return polimento;
   }
