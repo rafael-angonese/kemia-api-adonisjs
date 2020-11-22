@@ -2,6 +2,9 @@
 
 const ControleSs = use("App/Models/ControleSs");
 const Helpers = use("Helpers");
+const Configuracao = use("App/Models/Configuracao");
+const Notificacao = use("App/Models/Notificacao");
+const PushMessageService = use("App/Services/PushMessage/PushMessageService");
 
 class ControleSsController {
   async index({ request }) {
@@ -27,17 +30,18 @@ class ControleSsController {
     return localId;
   }
 
-  async showImageTratado ({ params, response }) {
-    const { id } = params
-    return response.download(Helpers.tmpPath(`uploads/${id}_tratado.jpg`))
+  async showImageTratado({ params, response }) {
+    const { id } = params;
+    return response.download(Helpers.tmpPath(`uploads/${id}_tratado.jpg`));
   }
 
-  async showImageBruto ({ params, response }) {
-    const { id } = params
-    return response.download(Helpers.tmpPath(`uploads/${id}_bruto.jpg`))
+  async showImageBruto({ params, response }) {
+    const { id } = params;
+    return response.download(Helpers.tmpPath(`uploads/${id}_bruto.jpg`));
   }
 
-  async store({ request, response }) {
+  async store({ request, auth, response }) {
+    const auth_user = await auth.getUser();
     const data = request.only([
       "data",
       "hora",
@@ -85,6 +89,190 @@ class ControleSsController {
       }
       controle_ss.efluente_tratado = efluente_tratado.fileName;
       await controle_ss.save();
+    }
+
+    const configuracao = await Configuracao.query()
+      .where("empresa_id", controle_ss.empresa_id)
+      .where("tipo", "SS")
+      .first();
+
+    if (!configuracao) {
+      return response.status(201).json(controle_ss);
+    }
+
+    // Bruto min e max
+    if (
+      Number.parseFloat(controle_ss.bruto) <
+      Number.parseFloat(configuracao.bruto_min)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: bruto mínimo: ${configuracao.bruto_min} registrado: ${controle_ss.bruto}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    if (
+      Number.parseFloat(controle_ss.bruto) >
+      Number.parseFloat(configuracao.bruto_max)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: bruto máximo: ${configuracao.bruto_max} registrado: ${controle_ss.bruto}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    // Reator 1
+    if (
+      Number.parseFloat(controle_ss.reator_1) <
+      Number.parseFloat(configuracao.reator1_min)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Reator 1 mínimo: ${configuracao.reator1_min} registrado: ${controle_ss.reator_1}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    if (
+      Number.parseFloat(controle_ss.reator_1) >
+      Number.parseFloat(configuracao.reator1_max)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Reator 1 máximo: ${configuracao.reator1_max} registrado: ${controle_ss.reator_1}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    // Reator 2
+    if (
+      Number.parseFloat(controle_ss.reator_2) <
+      Number.parseFloat(configuracao.reator2_min)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Reator 2 mínimo: ${configuracao.reator2_min} registrado: ${controle_ss.reator_2}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    if (
+      Number.parseFloat(controle_ss.reator_2) >
+      Number.parseFloat(configuracao.reator2_max)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Reator 2 máximo: ${configuracao.reator2_max} registrado: ${controle_ss.reator_2}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    // Reator 3
+    if (
+      Number.parseFloat(controle_ss.reator_3) <
+      Number.parseFloat(configuracao.reator3_min)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Reator 3 mínimo: ${configuracao.reator3_min} registrado: ${controle_ss.reator_3}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    if (
+      Number.parseFloat(controle_ss.reator_3) >
+      Number.parseFloat(configuracao.reator3_max)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Reator 3 máximo: ${configuracao.reator3_max} registrado: ${controle_ss.reator_3}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    // Tratado
+    if (
+      Number.parseFloat(controle_ss.tratado) <
+      Number.parseFloat(configuracao.tratado_min)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Tratado mínimo: ${configuracao.tratado_min} registrado: ${controle_ss.tratado}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
+    }
+
+    if (
+      Number.parseFloat(controle_ss.tratado) >
+      Number.parseFloat(configuracao.tratado_max)
+    ) {
+      let notificacaoData = {
+        data: new Date(),
+        mensagem: `Alteração Controle SS: Tratado máximo: ${configuracao.tratado_max} registrado: ${controle_ss.tratado}`,
+        empresa_id: controle_ss.empresa_id,
+        local_id: controle_ss.local_id,
+        user_id: auth_user.id,
+      };
+
+      let notificacao = await Notificacao.create(notificacaoData);
+
+      await new PushMessageService(notificacao.mensagem).call();
     }
 
     return response.status(201).json(controle_ss);

@@ -1,6 +1,8 @@
 "use strict";
 
 const Equipamento = use("App/Models/Equipamento");
+const Notificacao = use("App/Models/Notificacao");
+const PushMessageService = use("App/Services/PushMessage/PushMessageService");
 
 class EquipamentoController {
   async index({ request }) {
@@ -19,10 +21,23 @@ class EquipamentoController {
     return equipamento;
   }
 
-  async store({ request, response }) {
+  async store({ request, auth, response }) {
+    const auth_user = await auth.getUser();
     const data = request.only(["nome", "descricao", "empresa_id", "local_id"]);
 
     const equipamento = await Equipamento.create(data);
+
+    const notificacaoData = {
+      data: new Date(),
+      mensagem: `Novo Equipamento Registrado ${equipamento.nome}`,
+      empresa_id: equipamento.empresa_id,
+      local_id: equipamento.local_id,
+      user_id: auth_user.id,
+    };
+
+    const notificacao = await Notificacao.create(notificacaoData);
+
+    await new PushMessageService(notificacao.mensagem).call();
 
     return response.status(201).json(equipamento);
   }
