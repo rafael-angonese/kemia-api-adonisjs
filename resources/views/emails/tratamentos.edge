@@ -1,0 +1,65 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+      </style>
+    </head>
+    <body>
+      <h3>Relatório de Tratamentos de Efluente com Lagoa</h3>
+    <p>Data: {{ startDate }} até {{ endDate }}</p>
+      <table id='customers'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>PH</th>
+          <th>OD</th>
+          <th>SS</th>
+          <th>Aeração</th>
+          <th>Observações</th>
+          <th>Nível da Lagoa</th>
+          <th>Bombas de recalque funcionando</th>
+          <th>Observação</th>
+          <th>Lagoa</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(tratamento in tratamentos)
+            <tr>
+                <td>{{ tratamento.dateFormat }}</td>
+                <td>{{ tratamento.ph }}</td>
+                <td>{{ tratamento.od }}</td>
+                <td>{{ tratamento.ss }}</td>
+                <td>{{ tratamento.aeracao }}</td>
+                <td>{{ tratamento.observacao }}</td>
+                <td>{{ tratamento.nivelLagoa }}</td>
+                <td>{{ tratamento.recalque }}</td>
+                <td>{{ tratamento.observacao_geral }}</td>
+                <td>{{ tratamento.lagoa.nome }}</td>
+            </tr>
+        @endeach
+  </tbody>
+</table>
+</body>
+</html>

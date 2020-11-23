@@ -1,6 +1,8 @@
 "use strict";
 
 const ControleVazao = use("App/Models/ControleVazao");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class ControleVazaoController {
   async index({ request }) {
@@ -23,7 +25,24 @@ class ControleVazaoController {
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    const controle_vazaos = await ControleVazao.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .fetch();
+
+    await Mail.send(
+      "emails.vazaos",
+      {
+        vazaos: controle_vazaos.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
+
+    return localId;
   }
 
   async store({ request, response }) {

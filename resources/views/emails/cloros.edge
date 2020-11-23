@@ -1,0 +1,53 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+      </style>
+    </head>
+    <body>
+      <h3>Relatório de Controle de Concentração de Cloro</h3>
+    <p>Data: {{ startDate }} até {{ endDate }}</p>
+      <table id='customers'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Tratado</th>
+          <th>Ação Corretiva</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(cloro in cloros)
+            <tr>
+                <td>{{ cloro.dateFormat }}</td>
+                <td>{{ cloro.hora }}</td>
+                <td>{{ cloro.tratado }}</td>
+                <td>{{ cloro.acao_corretiva }}</td>
+            </tr>
+        @endeach
+  </tbody>
+</table>
+</body>
+</html>

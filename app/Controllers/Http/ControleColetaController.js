@@ -1,6 +1,8 @@
 "use strict";
 
 const ControleColeta = use("App/Models/ControleColeta");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class ControleColetaController {
   async index({ request }) {
@@ -23,7 +25,24 @@ class ControleColetaController {
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    const controle_coletas = await ControleColeta.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .fetch();
+
+    await Mail.send(
+      "emails.coletas",
+      {
+        coletas: controle_coletas.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
+
+    return localId;
   }
 
   async store({ request, response }) {

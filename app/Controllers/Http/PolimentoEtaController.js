@@ -2,6 +2,8 @@
 
 const PolimentoEta = use("App/Models/PolimentoEta");
 const Helpers = use("Helpers");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class PolimentoEtaController {
   async index({ auth, request }) {
@@ -27,6 +29,24 @@ class PolimentoEtaController {
 
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
+
+    const polimentos = await PolimentoEta.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .with("eta")
+      .fetch();
+
+    await Mail.send(
+      "emails.polimentos",
+      {
+        polimentos: polimentos.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
 
     return localId;
   }

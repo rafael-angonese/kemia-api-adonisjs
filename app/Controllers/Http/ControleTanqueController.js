@@ -1,6 +1,8 @@
 "use strict";
 
 const ControleTanque = use("App/Models/ControleTanque");
+const Mail = use("Mail");
+const formatDate = use('Utils')('formatDate')
 
 class ControleTanqueController {
   async index({ request }) {
@@ -24,7 +26,28 @@ class ControleTanqueController {
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    const controle_tanques = await ControleTanque.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .with("tanque")
+      .fetch();
+
+    await Mail.send(
+      "emails.tanque",
+      {
+        tanques: controle_tanques.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message
+          .to(email)
+          .from("appkemia@gmail.com")
+          .subject("Kemia");
+      }
+    );
+
+    return localId;
   }
 
   async store({ request, response }) {

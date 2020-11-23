@@ -1,6 +1,8 @@
 "use strict";
 
 const ControleConcentracaoCloro = use("App/Models/ControleConcentracaoCloro");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class ControleConcentracaoCloroController {
   async index({ request }) {
@@ -25,7 +27,24 @@ class ControleConcentracaoCloroController {
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    const controle_concentracao_cloros = await ControleConcentracaoCloro.query()
+      .whereBetween("data", [startDate, endDate])
+      .where("local_id", localId)
+      .fetch();
+
+    await Mail.send(
+      "emails.cloros",
+      {
+        cloros: controle_concentracao_cloros.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
+
+    return localId;
   }
 
   async store({ request, response }) {

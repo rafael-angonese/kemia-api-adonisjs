@@ -1,6 +1,8 @@
 "use strict";
 
 const TratamentoEfluenteLagoa = use("App/Models/TratamentoEfluenteLagoa");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class TratamentoEfluenteLagoaController {
   async index({ request }) {
@@ -24,7 +26,25 @@ class TratamentoEfluenteLagoaController {
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    const tratamentos = await TratamentoEfluenteLagoa.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .with("lagoa")
+      .fetch();
+
+    await Mail.send(
+      "emails.tratamentos",
+      {
+        tratamentos: tratamentos.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
+
+    return localId;
   }
 
   async store({ request, response }) {

@@ -1,0 +1,76 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+      </style>
+    </head>
+    <body>
+      <h3>Relatório de Polimento com ETA</h3>
+    <p>Data: {{ startDate }} até {{ endDate }}</p>
+      <table id='customers'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Vazão</th>
+          <th>PH</th>
+          <th>PAC</th>
+          <th>Polímero</th>
+          <th>Hipoclorito</th>
+          <th>Observação</th>
+          <th>PH saída ETA</th>
+          <th>SS saída ETA</th>
+          <th>Observação saída ETA</th>
+          <th>PH saída Final</th>
+          <th>SS saída Final</th>
+          <th>Observação saída Final</th>
+          <th>Eta</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(polimento in polimentos)
+            <tr>
+                <td>{{ polimento.dateFormat }}</td>
+                <td>{{ polimento.vazao }}</td>
+                <td>{{ polimento.ph }}</td>
+                <td>{{ polimento.pac }}</td>
+                <td>{{ polimento.polimero }}</td>
+                <td>{{ polimento.hipoclorito }}</td>
+                <td>{{ polimento.observacao }}</td>
+
+                <td>{{ polimento.ph_caixa_saida_eta }}</td>
+                <td>{{ polimento.ss_caixa_saida_eta }}</td>
+                <td>{{ polimento.observacao_caixa_saida_eta }}</td>
+
+                <td>{{ polimento.ph_caixa_saida_final }}</td>
+                <td>{{ polimento.ss_caixa_saida_final }}</td>
+                <td>{{ polimento.observacao_caixa_saida_final }}</td>
+
+                <td>{{ polimento.eta.nome }}</td>
+            </tr>
+        @endeach
+  </tbody>
+</table>
+</body>
+</html>

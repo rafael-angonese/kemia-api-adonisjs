@@ -1,0 +1,59 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+      </style>
+    </head>
+    <body>
+      <h3>Relatório de Controle de PH</h3>
+    <p>Data: {{ startDate }} até {{ endDate }}</p>
+      <table id='customers'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Bruto</th>
+          <th>Reator 1</th>
+          <th>Reator 2</th>
+          <th>Reator 3</th>
+          <th>Ação Corretiva</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(ph in phs)
+            <tr>
+                <td>{{ ph.dateFormat }}</td>
+                <td>{{ ph.hora }}</td>
+                <td>{{ ph.bruto }}</td>
+                <td>{{ ph.reator_1 }}</td>
+                <td>{{ ph.reator_2 }}</td>
+                <td>{{ ph.reator_3 }}</td>
+                <td>{{ ph.acao_corretiva }}</td>
+            </tr>
+        @endeach
+  </tbody>
+</table>
+</body>
+</html>

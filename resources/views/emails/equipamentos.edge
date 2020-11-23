@@ -1,0 +1,53 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+      </style>
+    </head>
+    <body>
+      <h3>Relatório de Equipamentos em Manutenção</h3>
+    <p>Data: {{ startDate }} até {{ endDate }}</p>
+      <table id='customers'>
+      <thead>
+        <tr>
+          <th>Saída</th>
+          <th>Retorno</th>
+          <th>Problema</th>
+          <th>Equipamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(equipamento in equipamentos)
+            <tr>
+                <td>{{ equipamento.saidaFormat }}</td>
+                <td>{{ equipamento.retornoFormat }}</td>
+                <td>{{ equipamento.problema }}</td>
+                <td>{{ equipamento.equipamento.nome }}</td>
+            </tr>
+        @endeach
+  </tbody>
+</table>
+</body>
+</html>

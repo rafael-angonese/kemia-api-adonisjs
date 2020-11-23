@@ -1,6 +1,8 @@
 "use strict";
 
 const ControlePastilhaCloro = use("App/Models/ControlePastilhaCloro");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class ControlePastilhaCloroController {
   async index({ request }) {
@@ -23,7 +25,24 @@ class ControlePastilhaCloroController {
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    const controle_pastilha_cloros = await ControlePastilhaCloro.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .fetch();
+
+    await Mail.send(
+      "emails.pastilhas",
+      {
+        pastilhas: controle_pastilha_cloros.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
+
+    return localId;
   }
 
   async store({ request, response }) {

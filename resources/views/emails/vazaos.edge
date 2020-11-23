@@ -1,0 +1,51 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <style>
+        #customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #4CAF50;
+          color: white;
+        }
+      </style>
+    </head>
+    <body>
+      <h3>Relatório de Controle de Vazão</h3>
+    <p>Data: {{ startDate }} até {{ endDate }}</p>
+      <table id='customers'>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Vazão/Dia</th>
+        </tr>
+      </thead>
+      <tbody>
+        @each(vazao in vazaos)
+            <tr>
+                <td>{{ vazao.dateFormat }}</td>
+                <td>{{ vazao.hora }}</td>
+                <td>{{ vazao.vazao_dia }}</td>
+            </tr>
+        @endeach
+  </tbody>
+</table>
+</body>
+</html>

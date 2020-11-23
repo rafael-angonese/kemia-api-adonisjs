@@ -4,6 +4,8 @@ const ControleOd = use("App/Models/ControleOd");
 const Configuracao = use("App/Models/Configuracao");
 const Notificacao = use("App/Models/Notificacao");
 const PushMessageService = use("App/Services/PushMessage/PushMessageService");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class ControleOdController {
   async index({ request }) {
@@ -25,6 +27,23 @@ class ControleOdController {
 
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
+
+    const controle_ods = await ControleOd.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .fetch();
+
+    await Mail.send(
+      "emails.ods",
+      {
+        ods: controle_ods.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
 
     return localId;
   }

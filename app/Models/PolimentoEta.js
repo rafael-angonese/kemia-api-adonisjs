@@ -2,6 +2,7 @@
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
+const format = use("date-fns/format");
 
 class PolimentoEta extends Model {
 
@@ -23,6 +24,16 @@ class PolimentoEta extends Model {
 
     files () {
       return this.hasMany('App/Models/File')
+    }
+
+    static get computed() {
+      return ["dateFormat"];
+    }
+
+    getDateFormat() {
+      let date = new Date(this.data);
+      date = format(date, "dd/MM/yyyy");
+      return date;
     }
 }
 

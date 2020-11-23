@@ -1,6 +1,8 @@
 "use strict";
 
 const ControleBomba = use("App/Models/ControleBomba");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class ControleBombaController {
   async index({ request }) {
@@ -24,7 +26,25 @@ class ControleBombaController {
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
 
-    return localId
+    const controle_bombas = await ControleBomba.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .with("equipamento")
+      .fetch();
+
+    await Mail.send(
+      "emails.bombas",
+      {
+        bombas: controle_bombas.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
+
+    return localId;
   }
 
   async store({ request, response }) {

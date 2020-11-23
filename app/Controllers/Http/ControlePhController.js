@@ -4,6 +4,8 @@ const ControlePh = use("App/Models/ControlePh");
 const Configuracao = use("App/Models/Configuracao");
 const Notificacao = use("App/Models/Notificacao");
 const PushMessageService = use("App/Services/PushMessage/PushMessageService");
+const Mail = use("Mail");
+const formatDate = use("Utils")("formatDate");
 
 class ControlePhController {
   async index({ request }) {
@@ -25,6 +27,23 @@ class ControlePhController {
 
   async sendEmail({ request }) {
     const { localId, startDate, endDate, email, tipo } = request.all();
+
+    const controle_phs = await ControlePh.query()
+      .where("local_id", localId)
+      .whereBetween("data", [startDate, endDate])
+      .fetch();
+
+    await Mail.send(
+      "emails.phs",
+      {
+        phs: controle_phs.toJSON(),
+        startDate: formatDate(startDate),
+        endDate: formatDate(endDate),
+      },
+      (message) => {
+        message.to(email).from("appkemia@gmail.com").subject("Kemia");
+      }
+    );
 
     return localId;
   }
