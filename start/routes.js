@@ -192,7 +192,7 @@ Route.group(() => {
  Route.delete('/tratamento-efluente-lagoas/:id', 'TratamentoEfluenteLagoaController.destroy')
 
 })
-// .middleware('auth')
+.middleware('auth')
 
 Route.get('files/:id', 'FileController.show')
 Route.get('/controle-sses/:id/image-tratado', 'ControleSsController.showImageTratado')
