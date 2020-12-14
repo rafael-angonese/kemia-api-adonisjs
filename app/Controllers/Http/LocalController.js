@@ -1,10 +1,11 @@
 "use strict";
 
 const Local = use("App/Models/Local");
+const LocalUsuario = use("App/Models/LocalUsuario");
 
 class LocalController {
   async index({ request, auth }) {
-    let auth_user = await auth.getUser();
+    const auth_user = await auth.getUser();
 
     let { empresaId } = request.all();
 
@@ -12,11 +13,19 @@ class LocalController {
       empresaId = auth_user.empresa_id;
     }
 
-    const locais = await Local.query()
+    let locais = Local.query()
       .where("empresa_id", empresaId)
       .with("users", (qr) => qr.select("id", "nome"))
-      .fetch();
 
+    if (auth_user.tipo === "operator") {
+      const locaisIds = await LocalUsuario.query()
+        .where("user_id", auth_user.id)
+        .pluck('local_id');
+
+      locais.whereIn("id", locaisIds);
+    }
+
+    locais = await locais.fetch();
     return locais;
   }
 
