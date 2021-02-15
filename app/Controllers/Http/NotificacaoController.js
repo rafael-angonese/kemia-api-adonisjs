@@ -9,7 +9,7 @@ class NotificacaoController {
     const notificacaos = await Notificacao.query()
       .where("local_id", localId)
       .whereBetween("data", [startDate, endDate])
-      .with("user", (qr) => qr.select("id", "username"))
+      .with("user", (qr) => qr.select("id", "nome"))
       .fetch();
 
     return notificacaos;

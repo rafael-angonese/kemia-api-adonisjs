@@ -13,7 +13,7 @@ class ControleTanqueValidator {
     get rules() {
         return {
             data: 'required|date',
-            hora: 'required|date',
+            hora: 'required',
             tempo_ligado_2cv: 'required',
             tempo_desligado_2cv: 'required',
             tempo_ligado_5cv: 'required',

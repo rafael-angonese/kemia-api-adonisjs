@@ -11,7 +11,7 @@ class ControleVazaoValidator {
     get rules() {
         return {
             data: 'required|date',
-            hora: 'required|date',
+            hora: 'required',
             vazao_dia: 'required|number',
             empresa_id: 'required|exists:empresas,id',
             local_id: 'required|exists:locais,id',

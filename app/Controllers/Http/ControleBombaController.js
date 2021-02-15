@@ -20,6 +20,8 @@ class ControleBombaController {
   async show({ params }) {
     const controle_bomba = await ControleBomba.find(params.id);
 
+    await controle_bomba.load('equipamento')
+
     return controle_bomba;
   }
 

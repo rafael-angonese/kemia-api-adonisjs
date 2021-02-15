@@ -36,6 +36,11 @@ class TarefaController {
   async show({ params }) {
     const tarefa = await Tarefa.find(params.id);
 
+    await tarefa.load('user', queryBuildeder => {
+      queryBuildeder.select('id', 'nome');
+    })
+    await tarefa.load('local')
+
     return tarefa;
   }
 

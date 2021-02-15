@@ -11,7 +11,7 @@ class ControleBombaValidator {
     get rules() {
         return {
             data: 'required|date',
-            hora: 'required|date',
+            hora: 'required',
             leitura: 'required|number',
             corrente: 'required|number',
             acao_corretiva: 'required',

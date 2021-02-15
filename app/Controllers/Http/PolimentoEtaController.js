@@ -22,6 +22,10 @@ class PolimentoEtaController {
   async show({ params }) {
     const polimento = await PolimentoEta.find(params.id);
 
+    await polimento.load('operador', queryBuildeder => {
+      queryBuildeder.select('id', 'nome');
+    })
+    await polimento.load('eta')
     await polimento.load("files");
 
     return polimento;

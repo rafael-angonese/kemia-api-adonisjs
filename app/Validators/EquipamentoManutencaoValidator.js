@@ -11,7 +11,6 @@ class EquipamentoManutencaoValidator {
     get rules() {
         return {
             saida: 'required|date',
-            retorno: 'date',
             problema: 'required',
             empresa_id: 'required|exists:empresas,id',
             local_id: 'required|exists:locais,id',

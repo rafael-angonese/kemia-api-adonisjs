@@ -20,6 +20,8 @@ class ControleTanqueController {
   async show({ params }) {
     const controle_tanque = await ControleTanque.find(params.id);
 
+    await controle_tanque.load('tanque');
+
     return controle_tanque;
   }
 

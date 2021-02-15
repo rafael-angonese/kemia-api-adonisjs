@@ -9,7 +9,7 @@ class EquipamentoManutencaoController {
     let { localId, startDate, endDate } = request.all();
 
     const equipamento_manutencaos = await EquipamentoManutencao.query()
-      .where("local_id", localId)
+      // .where("local_id", localId)
       .whereBetween("saida", [startDate, endDate])
       .with("equipamento")
       .fetch();
@@ -19,6 +19,8 @@ class EquipamentoManutencaoController {
 
   async show({ params }) {
     const equipamento_manutencao = await EquipamentoManutencao.find(params.id);
+
+    await equipamento_manutencao.load('equipamento')
 
     return equipamento_manutencao;
   }
@@ -53,7 +55,7 @@ class EquipamentoManutencaoController {
       "retorno",
       "problema",
       "equipamento_id",
-      "local_id",
+      // "local_id",
       "empresa_id",
     ]);
 
@@ -68,7 +70,7 @@ class EquipamentoManutencaoController {
       "retorno",
       "problema",
       "equipamento_id",
-      "local_id",
+      // "local_id",
       "empresa_id",
     ]);
 

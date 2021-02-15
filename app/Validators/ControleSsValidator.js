@@ -11,7 +11,7 @@ class ControleSsValidator {
     get rules() {
         return {
             data: 'required|date',
-            hora: 'required|date',
+            hora: 'required',
             bruto: 'required|number',
             reator_1: 'required|number',
             reator_2: 'required|number',

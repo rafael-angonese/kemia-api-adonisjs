@@ -20,6 +20,11 @@ class TratamentoEfluenteLagoaController {
   async show({ params }) {
     const tratamento = await TratamentoEfluenteLagoa.find(params.id);
 
+    await tratamento.load('operador', queryBuildeder => {
+      queryBuildeder.select('id', 'nome');
+    })
+    await tratamento.load('lagoa')
+
     return tratamento;
   }
 

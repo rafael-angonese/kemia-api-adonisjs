@@ -11,7 +11,7 @@ class ControleConcentracaoCloroValidator {
     get rules() {
         return {
             data: 'required|date',
-            hora: 'required|date',
+            hora: 'required',
             tratado: 'required|number',
             acao_corretiva: 'required',
             empresa_id: 'required|exists:empresas,id',

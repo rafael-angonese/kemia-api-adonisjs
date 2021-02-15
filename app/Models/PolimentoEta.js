@@ -19,7 +19,7 @@ class PolimentoEta extends Model {
     }
 
     operador() {
-      return this.belongsTo('App/Models/User')
+      return this.belongsTo('App/Models/User', 'operador_id')
     }
 
     files () {

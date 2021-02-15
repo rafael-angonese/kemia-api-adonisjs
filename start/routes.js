@@ -53,7 +53,7 @@ Route.group(() => {
   Route.get('/tarefas', 'TarefaController.index')
   Route.get('/tarefas/:id', 'TarefaController.show')
   Route.post('/tarefas', 'TarefaController.store') //.validator('TarefaValidator')
-  Route.put('/tarefas/:id', 'TarefaController.update').validator('TarefaValidator')
+  Route.put('/tarefas/:id', 'TarefaController.update') // .validator('TarefaValidator')
   Route.delete('/tarefas/:id', 'TarefaController.destroy')
 
   //Notificacao
