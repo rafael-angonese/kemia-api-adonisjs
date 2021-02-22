@@ -53,8 +53,8 @@
                 <td>{{ tratamento.ss }}</td>
                 <td>{{ tratamento.aeracao }}</td>
                 <td>{{ tratamento.observacao }}</td>
-                <td>{{ tratamento.nivelLagoa }}</td>
-                <td>{{ tratamento.recalque }}</td>
+                <td>{{ tratamento.nivel_lagoa === 1 ? 'Baixa' : tratamento.nivel_lagoa === 2 ? 'Média' : 'Alta' }}</td>
+                <td>{{ tratamento.bomba_recalque_funcionando === 1 ? '1' : tratamento.bomba_recalque_funcionando === 2 ? '2' : 'Ambos' }}</td>
                 <td>{{ tratamento.observacao_geral }}</td>
                 <td>{{ tratamento.lagoa.nome }}</td>
             </tr>

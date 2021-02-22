@@ -41,8 +41,8 @@
         @each(coleta in coletas)
             <tr>
                 <td>{{ coleta.dateFormat }}</td>
-                <td>{{ coleta.statusColeta }}</td>
-                <td>{{ coleta.condicaoColeta }}</td>
+                <td>{{ data.status_coleta === 1 ? 'Realizada' : 'Adiada' }}</td>
+                <td>{{ data.condicao_coleta === 1 ? 'Ensoralada' : data.condicao_coleta === 2 ? 'Chuvoso' : 'Garoa' }}</td>
             </tr>
         @endeach
   </tbody>
