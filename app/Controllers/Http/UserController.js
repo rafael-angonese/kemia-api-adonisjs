@@ -5,7 +5,6 @@ const LocalUsuario = use("App/Models/LocalUsuario");
 
 class UserController {
   async index({ request, response }) {
-
     let { empresaId } = request.all();
 
     const users = await User.query()
@@ -18,13 +17,29 @@ class UserController {
   }
 
   async operadores({ request, auth, response }) {
-
     let { empresaId } = request.all();
 
     const users = await User.query()
       .select("id", "username", "nome", "tipo", "empresa_id")
       .where("empresa_id", empresaId)
-      .where('tipo', 'operator')
+      .where("tipo", "operator")
+      .fetch();
+
+    return users;
+  }
+
+  async operadoresByLocal({ request, auth, response }) {
+    let { empresaId, localId } = request.all();
+
+    const usersIds = await LocalUsuario.query()
+      .where("local_id", localId)
+      .pluck("user_id");
+
+    const users = await User.query()
+      .select("id", "username", "nome", "tipo", "empresa_id")
+      .where("empresa_id", empresaId)
+      .whereIn("id", usersIds)
+      .where("tipo", "operator")
       .fetch();
 
     return users;
@@ -68,7 +83,6 @@ class UserController {
   }
 
   async update({ request, params, response }) {
-
     const data = request.only(["username", "nome", "tipo", "empresa_id"]);
 
     const user = await User.find(params.id);

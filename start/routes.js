@@ -28,6 +28,7 @@ Route.group(() => {
 
   //User
   Route.get('/operadores', 'UserController.operadores')
+  Route.get('/operadores_by_local', 'UserController.operadoresByLocal')
   Route.get('/users', 'UserController.index')
   Route.get('/users/:id', 'UserController.show')
   Route.post('/users', 'UserController.store').validator('UserStoreValidator')
