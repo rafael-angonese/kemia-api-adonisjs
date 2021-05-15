@@ -14,7 +14,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f4e503bd-1cd5-4181-8b8a-ab5c02daf4e7",
 								"exec": [
 									"var jsonData = pm.response.json();\r",
 									"\r",
@@ -45,7 +44,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"rafael\",\r\n    \"senha\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"username\": \"kemia\",\r\n    \"senha\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -64,68 +63,11 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "User",
 			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/users?empresaId=1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"users"
-							],
-							"query": [
-								{
-									"key": "empresaId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Operadores",
 					"protocolProfileBehavior": {
@@ -171,6 +113,122 @@
 							],
 							"path": [
 								"operadores"
+							],
+							"query": [
+								{
+									"key": "empresaId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OperadoresByLocal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/operadores?empresaId=1&localId=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"operadores"
+							],
+							"query": [
+								{
+									"key": "empresaId",
+									"value": "1"
+								},
+								{
+									"key": "localId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users?empresaId=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
 							],
 							"query": [
 								{
@@ -376,8 +434,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Empresa",
@@ -626,8 +683,714 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
+		},
+		{
+			"name": "Configurações",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/configuracaos?empresaId=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"configuracaos"
+							],
+							"query": [
+								{
+									"key": "empresaId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/configuracaos/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"configuracaos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"PH\",\r\n    \"bruto_min\": \"2\",\r\n    \"bruto_max\": \"2\",\r\n    \"reator1_min\": \"2\",\r\n    \"reator1_max\": \"2\",\r\n    \"reator2_min\": \"2\",\r\n    \"reator2_max\": \"2\",\r\n    \"reator3_min\": \"2\",\r\n    \"reator3_max\": \"1\",\r\n    \"tratado_min\": \"1\",\r\n    \"tratado_max\": \"1\",\r\n    \"empresa_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/configuracaos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"configuracaos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"PH\",\r\n    \"bruto_min\": \"2\",\r\n    \"bruto_max\": \"2\",\r\n    \"reator1_min\": \"2\",\r\n    \"reator1_max\": \"2\",\r\n    \"reator2_min\": \"2\",\r\n    \"reator2_max\": \"2\",\r\n    \"reator3_min\": \"2\",\r\n    \"reator3_max\": \"1\",\r\n    \"tratado_min\": \"1\",\r\n    \"tratado_max\": \"1\",\r\n    \"empresa_id\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/configuracaos/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"configuracaos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/configuracaos/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"configuracaos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tarefa",
+			"item": [
+				{
+					"name": "List Operador",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tarefas/operador?localId=1&userId=2&startDate=2020-08-01&endDate=2020-12-25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tarefas",
+								"operador"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "2"
+								},
+								{
+									"key": "startDate",
+									"value": "2020-08-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2020-12-25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tarefas?localId=1&startDate=2020-08-01&endDate=2020-12-25",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tarefas"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								},
+								{
+									"key": "startDate",
+									"value": "2020-08-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2020-12-25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/locais/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"locais",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"2020-11-08\",\r\n    \"atividade\": \"CONTROLE-COLETA\",\r\n    \"user_id\": 2,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1,\r\n    \"replicar\": false,\r\n    \"intervalo\": 1,\r\n    \"ate\": \"2020-11-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tarefas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tarefas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"aaaaaaaaa\",\r\n    \"descricao\": \"aaaaaaaaaa\",\r\n    \"endereco\": \"aaaaaaaaaa\",\r\n    \"empresa_id\": 1,\r\n    \"users\": [1]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/locais/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"locais",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/locais/11",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"locais",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notificacao",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/notificacaos?localId=1&startDate=2019-08-02&endDate=2021-08-02",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"notificacaos"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								},
+								{
+									"key": "startDate",
+									"value": "2019-08-02"
+								},
+								{
+									"key": "endDate",
+									"value": "2021-08-02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/notificacaos/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"notificacaos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Local",
@@ -882,341 +1645,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Tarefa",
-			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tarefas?localId=1&startDate=2020-08-01&endDate=2020-12-25",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tarefas"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								},
-								{
-									"key": "startDate",
-									"value": "2020-08-01"
-								},
-								{
-									"key": "endDate",
-									"value": "2020-12-25"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List Operador",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tarefas/operador?localId=1&userId=2&startDate=2020-08-01&endDate=2020-12-25",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tarefas",
-								"operador"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								},
-								{
-									"key": "userId",
-									"value": "2"
-								},
-								{
-									"key": "startDate",
-									"value": "2020-08-01"
-								},
-								{
-									"key": "endDate",
-									"value": "2020-12-25"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/locais/4",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"locais",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"data\": \"2020-11-08\",\r\n    \"atividade\": \"CONTROLE-COLETA\",\r\n    \"user_id\": 2,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1,\r\n    \"replicar\": false,\r\n    \"intervalo\": 1,\r\n    \"ate\": \"2020-11-10\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tarefas",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tarefas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"aaaaaaaaa\",\r\n    \"descricao\": \"aaaaaaaaaa\",\r\n    \"endereco\": \"aaaaaaaaaa\",\r\n    \"empresa_id\": 1,\r\n    \"users\": [1]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/locais/4",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"locais",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/locais/11",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"locais",
-								"11"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Equipamento",
@@ -1471,1572 +1900,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Eta",
-			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas?localId=1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"etaaaaaa\",\r\n    \"descricao\": \"eia eia eita chicoteia\",\r\n    \"is_vazao\": true,\r\n    \"is_ph\": true,\r\n    \"is_pac\": true,\r\n    \"is_polimero\": true,\r\n    \"is_hipoclorito\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"etaaaaaa\",\r\n    \"descricao\": \"eia eia eita chicoteia\",\r\n    \"is_vazao\": true,\r\n    \"is_ph\": true,\r\n    \"is_pac\": true,\r\n    \"is_polimero\": true,\r\n    \"is_hipoclorito\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Configurações",
-			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/configuracaos?empresaId=1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"configuracaos"
-							],
-							"query": [
-								{
-									"key": "empresaId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"tipo\": \"PH\",\r\n    \"bruto_min\": \"2\",\r\n    \"bruto_max\": \"2\",\r\n    \"reator1_min\": \"2\",\r\n    \"reator1_max\": \"2\",\r\n    \"reator2_min\": \"2\",\r\n    \"reator2_max\": \"2\",\r\n    \"reator3_min\": \"2\",\r\n    \"reator3_max\": \"1\",\r\n    \"tratado_min\": \"1\",\r\n    \"tratado_max\": \"1\",\r\n    \"empresa_id\": \"1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/configuracaos",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"configuracaos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"etaaaaaa\",\r\n    \"descricao\": \"eia eia eita chicoteia\",\r\n    \"is_vazao\": true,\r\n    \"is_ph\": true,\r\n    \"is_pac\": true,\r\n    \"is_polimero\": true,\r\n    \"is_hipoclorito\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Lagoa",
-			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/lagoas?localId=1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"lagoas"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/etas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"etas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"lagoa azul\",\r\n    \"descricao\": \"lagoinha\",\r\n    \"is_ph\": true,\r\n    \"is_od\": true,\r\n    \"is_ss\": true,\r\n    \"is_aeracao\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/lagoas",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"lagoas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"lagoa azul\",\r\n    \"descricao\": \"lagoinha\",\r\n    \"is_ph\": true,\r\n    \"is_od\": true,\r\n    \"is_ss\": true,\r\n    \"is_aeracao\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/lagoas/3",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"lagoas",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/lagoas/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"lagoas",
-								"2"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Polimento Eta",
-			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/polimento-etas?localId=1&startDate=2020-11-05&endDate=2021-05-05",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"polimento-etas"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								},
-								{
-									"key": "startDate",
-									"value": "2020-11-05"
-								},
-								{
-									"key": "endDate",
-									"value": "2021-05-05"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Send Email",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/polimento-etas/sendEmail?localId=1&startDate=2020-11-05&endDate=2021-05-05",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"polimento-etas",
-								"sendEmail"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								},
-								{
-									"key": "startDate",
-									"value": "2020-11-05"
-								},
-								{
-									"key": "endDate",
-									"value": "2021-05-05"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/polimento-etas/17",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"polimento-etas",
-								"17"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store With File",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "data",
-									"value": "2020-08-02",
-									"type": "text"
-								},
-								{
-									"key": "vazao",
-									"value": "10",
-									"type": "text"
-								},
-								{
-									"key": "ph",
-									"value": "10",
-									"type": "text"
-								},
-								{
-									"key": "pac",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "polimero",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "hipoclorito",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "observacao",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "ph_caixa_saida_eta",
-									"value": "4",
-									"type": "text"
-								},
-								{
-									"key": "ss_caixa_saida_eta",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "observacao_caixa_saida_eta",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "ph_caixa_saida_final",
-									"value": "4",
-									"type": "text"
-								},
-								{
-									"key": "ss_caixa_saida_final",
-									"value": "4",
-									"type": "text"
-								},
-								{
-									"key": "observacao_caixa_saida_final",
-									"value": "4",
-									"type": "text"
-								},
-								{
-									"key": "eta_id",
-									"value": "4",
-									"type": "text"
-								},
-								{
-									"key": "empresa_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "local_id",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "image[]",
-									"type": "file",
-									"src": "/C:/Users/Rafael/Desktop/asdfa.JPG"
-								},
-								{
-									"key": "image[]",
-									"type": "file",
-									"src": "/C:/Users/Rafael/Desktop/uuuuuuuuu.jpg"
-								}
-							],
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/polimento-etas",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"polimento-etas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"vazao\": \"10\",\r\n    \"ph\": \"23\",\r\n    \"pac\": \"20\",\r\n    \"polimero\": \"3\",\r\n    \"hipoclorito\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"ph_caixa_saida_eta\": \"67\",\r\n    \"ss_caixa_saida_eta\": \"67\",\r\n    \"observacao_caixa_saida_eta\": \"67\",\r\n    \"ph_caixa_saida_final\": \"67\",\r\n    \"ss_caixa_saida_final\": \"67\",\r\n    \"observacao_caixa_saida_final\": \"67\",\r\n    \"eta_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/polimento-etas",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"polimento-etas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"vazao\": \"10\",\r\n    \"ph\": \"23\",\r\n    \"pac\": \"20\",\r\n    \"polimero\": \"3\",\r\n    \"hipoclorito\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"ph_caixa_saida_eta\": \"67\",\r\n    \"ss_caixa_saida_eta\": \"67\",\r\n    \"observacao_caixa_saida_eta\": \"67\",\r\n    \"ph_caixa_saida_final\": \"67\",\r\n    \"ss_caixa_saida_final\": \"67\",\r\n    \"observacao_caixa_saida_final\": \"67\",\r\n    \"operador_id\": 1,\r\n    \"eta_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/polimento-etas/3",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"polimento-etas",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/polimento-etas/3",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"polimento-etas",
-								"3"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Tratamento Efluente Lagoa",
-			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tratamento-efluente-lagoas?localId=1&startDate=2019-08-02&endDate=2021-08-02",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tratamento-efluente-lagoas"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								},
-								{
-									"key": "startDate",
-									"value": "2019-08-02"
-								},
-								{
-									"key": "endDate",
-									"value": "2021-08-02"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Send Email",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tratamento-efluente-lagoas/sendEmail?localId=1&startDate=2019-08-02&endDate=2021-08-02",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tratamento-efluente-lagoas",
-								"sendEmail"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								},
-								{
-									"key": "startDate",
-									"value": "2019-08-02"
-								},
-								{
-									"key": "endDate",
-									"value": "2021-08-02"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tratamento-efluente-lagoas/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tratamento-efluente-lagoas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Store",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"ph\": \"23\",\r\n    \"od\": \"20\",\r\n    \"ss\": \"3\",\r\n    \"aeracao\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"nivel_lagoa\": \"67\",\r\n    \"bomba_recalque_funcionando\": \"67\",\r\n    \"observacao_geral\": \"67\",\r\n    \"operador_id\": 1,\r\n    \"lagoa_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tratamento-efluente-lagoas",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tratamento-efluente-lagoas"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"ph\": \"23\",\r\n    \"od\": \"20\",\r\n    \"ss\": \"3\",\r\n    \"aeracao\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"nivel_lagoa\": \"67\",\r\n    \"bomba_recalque_funcionando\": \"67\",\r\n    \"observacao_geral\": \"67\",\r\n    \"operador_id\": 1,\r\n    \"lagoa_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tratamento-efluente-lagoas/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tratamento-efluente-lagoas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/tratamento-efluente-lagoas/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"tratamento-efluente-lagoas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Tanque",
@@ -3291,8 +2155,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Coleta",
@@ -3620,8 +2483,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Od",
@@ -3949,8 +2811,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Ph",
@@ -4278,8 +3139,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Ss",
@@ -4819,8 +3679,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Vazao",
@@ -5148,8 +4007,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Tanque",
@@ -5477,8 +4335,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Bomba",
@@ -5807,8 +4664,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Equipamento Manutencao",
@@ -6136,8 +4992,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Concentracao Cloro",
@@ -6465,8 +5320,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Controle Pastilha Cloro",
@@ -6794,8 +5648,1315 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
+		},
+		{
+			"name": "Eta",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/etas?localId=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"etas"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/etas/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"etas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"etaaaaaa\",\r\n    \"descricao\": \"eia eia eita chicoteia\",\r\n    \"is_vazao\": true,\r\n    \"is_ph\": true,\r\n    \"is_pac\": true,\r\n    \"is_polimero\": true,\r\n    \"is_hipoclorito\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/etas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"etas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"etaaaaaa\",\r\n    \"descricao\": \"eia eia eita chicoteia\",\r\n    \"is_vazao\": true,\r\n    \"is_ph\": true,\r\n    \"is_pac\": true,\r\n    \"is_polimero\": true,\r\n    \"is_hipoclorito\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/etas/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"etas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/etas/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"etas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lagoa",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/lagoas?localId=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lagoas"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/etas/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"etas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"lagoa azul\",\r\n    \"descricao\": \"lagoinha\",\r\n    \"is_ph\": true,\r\n    \"is_od\": true,\r\n    \"is_ss\": true,\r\n    \"is_aeracao\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/lagoas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lagoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"lagoa azul\",\r\n    \"descricao\": \"lagoinha\",\r\n    \"is_ph\": true,\r\n    \"is_od\": true,\r\n    \"is_ss\": true,\r\n    \"is_aeracao\": true,\r\n    \"is_observacao\": true,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/lagoas/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lagoas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/lagoas/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"lagoas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Polimento Eta",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/polimento-etas?localId=1&startDate=2020-11-05&endDate=2021-05-05",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polimento-etas"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								},
+								{
+									"key": "startDate",
+									"value": "2020-11-05"
+								},
+								{
+									"key": "endDate",
+									"value": "2021-05-05"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/polimento-etas/sendEmail?localId=1&startDate=2020-11-05&endDate=2021-05-05",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polimento-etas",
+								"sendEmail"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								},
+								{
+									"key": "startDate",
+									"value": "2020-11-05"
+								},
+								{
+									"key": "endDate",
+									"value": "2021-05-05"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/polimento-etas/17",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polimento-etas",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store With File",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "2020-08-02",
+									"type": "text"
+								},
+								{
+									"key": "vazao",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "ph",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "pac",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "polimero",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "hipoclorito",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "observacao",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "ph_caixa_saida_eta",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "ss_caixa_saida_eta",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "observacao_caixa_saida_eta",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ph_caixa_saida_final",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "ss_caixa_saida_final",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "observacao_caixa_saida_final",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "eta_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "empresa_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "local_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image[]",
+									"type": "file",
+									"src": "/C:/Users/Rafael/Desktop/asdfa.JPG"
+								},
+								{
+									"key": "image[]",
+									"type": "file",
+									"src": "/C:/Users/Rafael/Desktop/uuuuuuuuu.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/polimento-etas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polimento-etas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"vazao\": \"10\",\r\n    \"ph\": \"23\",\r\n    \"pac\": \"20\",\r\n    \"polimero\": \"3\",\r\n    \"hipoclorito\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"ph_caixa_saida_eta\": \"67\",\r\n    \"ss_caixa_saida_eta\": \"67\",\r\n    \"observacao_caixa_saida_eta\": \"67\",\r\n    \"ph_caixa_saida_final\": \"67\",\r\n    \"ss_caixa_saida_final\": \"67\",\r\n    \"observacao_caixa_saida_final\": \"67\",\r\n    \"eta_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/polimento-etas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polimento-etas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"vazao\": \"10\",\r\n    \"ph\": \"23\",\r\n    \"pac\": \"20\",\r\n    \"polimero\": \"3\",\r\n    \"hipoclorito\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"ph_caixa_saida_eta\": \"67\",\r\n    \"ss_caixa_saida_eta\": \"67\",\r\n    \"observacao_caixa_saida_eta\": \"67\",\r\n    \"ph_caixa_saida_final\": \"67\",\r\n    \"ss_caixa_saida_final\": \"67\",\r\n    \"observacao_caixa_saida_final\": \"67\",\r\n    \"operador_id\": 1,\r\n    \"eta_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/polimento-etas/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polimento-etas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/polimento-etas/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polimento-etas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tratamento Efluente Lagoa",
+			"item": [
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tratamento-efluente-lagoas?localId=1&startDate=2019-08-02&endDate=2021-08-02",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tratamento-efluente-lagoas"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								},
+								{
+									"key": "startDate",
+									"value": "2019-08-02"
+								},
+								{
+									"key": "endDate",
+									"value": "2021-08-02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tratamento-efluente-lagoas/sendEmail?localId=1&startDate=2019-08-02&endDate=2022-08-02&email=appkemia@gmail.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tratamento-efluente-lagoas",
+								"sendEmail"
+							],
+							"query": [
+								{
+									"key": "localId",
+									"value": "1"
+								},
+								{
+									"key": "startDate",
+									"value": "2019-08-02"
+								},
+								{
+									"key": "endDate",
+									"value": "2022-08-02"
+								},
+								{
+									"key": "email",
+									"value": "appkemia@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tratamento-efluente-lagoas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tratamento-efluente-lagoas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"ph\": \"23\",\r\n    \"od\": \"20\",\r\n    \"ss\": \"3\",\r\n    \"aeracao\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"nivel_lagoa\": \"67\",\r\n    \"bomba_recalque_funcionando\": \"67\",\r\n    \"observacao_geral\": \"67\",\r\n    \"operador_id\": 1,\r\n    \"lagoa_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tratamento-efluente-lagoas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tratamento-efluente-lagoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": \"2020-08-02\",\r\n    \"ph\": \"23\",\r\n    \"od\": \"20\",\r\n    \"ss\": \"3\",\r\n    \"aeracao\": \"67\",\r\n    \"observacao\": \"sdfaf\",\r\n    \"nivel_lagoa\": \"67\",\r\n    \"bomba_recalque_funcionando\": \"67\",\r\n    \"observacao_geral\": \"67\",\r\n    \"operador_id\": 1,\r\n    \"lagoa_id\": 3,\r\n    \"empresa_id\": 1,\r\n    \"local_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tratamento-efluente-lagoas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tratamento-efluente-lagoas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tratamento-efluente-lagoas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tratamento-efluente-lagoas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "File",
@@ -6857,79 +7018,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Notificacao",
-			"item": [
-				{
-					"name": "List",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/notificacaos?localId=1&startDate=2019-08-02&endDate=2021-08-02",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"notificacaos"
-							],
-							"query": [
-								{
-									"key": "localId",
-									"value": "1"
-								},
-								{
-									"key": "startDate",
-									"value": "2019-08-02"
-								},
-								{
-									"key": "endDate",
-									"value": "2021-08-02"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }

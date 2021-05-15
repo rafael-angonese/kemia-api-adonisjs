@@ -1,4 +1,24 @@
-# Adonis API application
+## 💻 Projeto
+
+Esse projeto foi desenvolvido durante o projeto de extensão da universidade Unochapecó em conjunto a empresa Kemia.
+
+Este projeto é uma aplicação que consiste em fazer o gerenciamento de parâmetros de um sistema de uma empresa de tratamento de efluentes. Podemos citar algumas features como:
+  - CRUDs.
+  - Autenticação.
+  - Envio de e-mail.
+  - Envio de notificação.
+  - Upload de arquivos.
+
+## ✨ Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [Adonisjs](https://adonisjs.com)
+- [Postgresql](https://www.postgresql.org/)
+- [Date-fns](https://date-fns.org/)
+
+
+### 🔶 Adonis 4.1 API application dependencies
 
 This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
 
@@ -8,61 +28,44 @@ This is the boilerplate for creating an API server in AdonisJs, it comes pre-con
 4. Lucid ORM
 5. Migrations and seeds
 
-## Setup
-
-Use the adonis command to install the blueprint
-
-```bash
-adonis new yardstick --api-only
-```
-
-or manually clone the repo and then run `npm install`.
-
-
-### Migrations
-
-Run the following command to run startup migrations.
-
-```js
-adonis migration:run
-```
-
-
-# Ambiente de desenvolvimento
-
-Criar o arquivo .env - baseado no .env.example
-
-1. Node versão local: v12.18.3
-2. Adonis versão local: 4.0.12
-3. Yarn or NPM
-
 ```bash
 https://adonisjs.com/docs/4.1/installation
 ```
 
-```bash
-yarn 
-```
+## Ambiente de desenvolvimento
 
-or
+Criar o arquivo .env - baseado no .env.example
 
 ```bash
-npm install 
+node --version
+v12.18.3
+
+adonis --version
+4.1.0
+
+yarn --version
+1.22.4
 ```
 
-and
+## 🚀 Como executar
 
+- Clone o repositório
+- Instale as dependências com `yarn`
+```bash
+yarn install
+```
+- Execute as migrations
 ```bash
 adonis migration:run
 ```
-
-and 
-
+- Inicie o servidor com `yarn`
 ```bash
-adonis serve --dev
+yarn dev
 ```
-Verificar o seus localhost
+- A aplicação pode ser acessada em [`localhost:3333`](http://localhost:3333).
 
-```bash
-http://localhost:3333/
-```
+- Você pode verificar uma pequena documentação das rotas da API através da collection exportada via Postman, os arquivos da collection estão na pasta ./docs
+
+---
+
+Feito com ♥ by Rafael Angonese
